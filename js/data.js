@@ -5,9 +5,11 @@ let cache = null;
 
 export async function loadData() {
   if (cache) return cache;
-  const [config, problemsRaw] = await Promise.all([
+  const [config, problemsRaw, examsRaw, packagesRaw] = await Promise.all([
     fetch("data/config.json").then((r) => r.json()),
     fetch("data/problems.json").then((r) => r.json()),
+    fetch("data/exams.json").then((r) => r.json()),
+    fetch("data/packages.json").then((r) => r.json()),
   ]);
   const problems = [...problemsRaw.leadalpha, ...problemsRaw.juyomon];
   cache = {
@@ -15,6 +17,8 @@ export async function loadData() {
     problems,
     leadalpha: problemsRaw.leadalpha,
     juyomon: problemsRaw.juyomon,
+    exams: examsRaw.exams,
+    packages: packagesRaw.packages,
   };
   return cache;
 }

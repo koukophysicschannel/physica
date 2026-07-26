@@ -1,31 +1,20 @@
-import { computeHeldByProblem, lastTapRetention, sumHeld } from "../scoring.js";
-import { addTap, undoLastTap } from "../storage.js";
+import { computeHeldByProblem, sumHeld } from "../scoring.js";
+import { tileHtml, attachTileHandlers, problemShortLabel } from "../tiles.js";
 
-const LONG_PRESS_MS = 550;
-const CATEGORY_LABEL = {
-  基礎CHECK: "CHECK",
-  基本例題: "例",
-  基本問題: "問",
-  応用問題: "応",
-};
 const CATEGORY_ORDER = ["基礎CHECK", "基本例題", "基本問題", "応用問題"];
+const LAP_LEGEND_LABELS = ["1周目", "2周目", "3周目", "4周目", "5周目〜"];
 
-function greenTileStyle(retention) {
-  if (retention === null) return "";
-  return `background-color: rgba(43,138,62,${retention.toFixed(3)});`;
-}
-
-function tileHtml(entry, now, decay, label) {
-  const retention = lastTapRetention(entry.taps, now, decay);
-  const emptyClass = retention === null ? " tile-empty" : "";
-  const style = greenTileStyle(retention);
-  const count = entry.taps.length;
-  return `
-    <button type="button" class="tile${emptyClass}" style="${style}" data-id="${entry.problem.id}" title="${entry.problem.title}">
-      <span class="tile-label">${label}</span>
-      ${count > 0 ? `<span class="tile-count">${count}</span>` : ""}
-    </button>
-  `;
+function renderLapLegend(config) {
+  const swatches = LAP_LEGEND_LABELS.map((label, i) => {
+    const rgb = config.lapColors[String(i + 1)];
+    return `
+      <div class="lap-legend-item">
+        <span class="lap-legend-swatch" style="background-color: rgb(${rgb});"></span>
+        <span class="lap-legend-label">${label}</span>
+      </div>
+    `;
+  }).join("");
+  return `<div class="lap-legend">${swatches}</div>`;
 }
 
 function renderLeadalpha(data, history, now, openSet) {
@@ -40,8 +29,7 @@ function renderLeadalpha(data, history, now, openSet) {
       const tiles = byCategory
         .map((p) => {
           const entry = heldMap.get(p.id);
-          const label = p.categoryKey === "基礎CHECK" ? "CHECK" : `${CATEGORY_LABEL[p.categoryKey]}${p.number}`;
-          return tileHtml(entry, now, data.config.decay, label);
+          return tileHtml(entry, now, data.config, problemShortLabel(p));
         })
         .join("");
       return `
@@ -66,8 +54,7 @@ function renderJuyomon(data, history, now, openSet) {
       const tiles = items
         .map((p) => {
           const entry = heldMap.get(p.id);
-          const diffLabel = p.categoryKey === "重問A" ? "A" : p.categoryKey === "重問B" ? "B" : "考";
-          return tileHtml(entry, now, data.config.decay, `${diffLabel}${p.num}`);
+          return tileHtml(entry, now, data.config, problemShortLabel(p));
         })
         .join("");
       return `
@@ -89,6 +76,7 @@ export function mountList(container, ctx) {
   };
 
   container.innerHTML = `
+    ${renderLapLegend(data.config)}
     <div class="tabs">
       <button type="button" class="tab-btn active" data-tab="leadalpha">リードα</button>
       <button type="button" class="tab-btn" data-tab="juyomon">重問</button>
@@ -108,7 +96,7 @@ export function mountList(container, ctx) {
         ? renderLeadalpha(data, history, now, openSet)
         : renderJuyomon(data, history, now, openSet);
     attachDetailsHandlers(openSet);
-    attachTileHandlers();
+    attachTileHandlers(contentEl, { getHistory, onChange: renderTiles });
   }
 
   function attachDetailsHandlers(openSet) {
@@ -118,57 +106,6 @@ export function mountList(container, ctx) {
         if (details.open) openSet.add(key);
         else openSet.delete(key);
       });
-    });
-  }
-
-  function attachTileHandlers() {
-    // Tap-vs-long-press is decided entirely from pointerdown/pointerup rather
-    // than the "click" event, and renderTiles() (which tears down and rebuilds
-    // every tile node) is never called while the pointer/touch is still down.
-    // Rebuilding the DOM mid-gesture detaches the tile the OS is tracking for
-    // this touch, which releases implicit pointer capture; the eventual
-    // pointerup/touchend then gets re-hit-tested and delivered to whatever
-    // *new* tile now sits at those coordinates instead -- a fresh element
-    // whose closure has no memory of the long-press, so it treats the lift as
-    // a plain tap and silently re-adds what the long-press just removed. The
-    // long-press timer therefore only mutates storage and flashes a class on
-    // the still-attached tile; the actual re-render is deferred to pointerup,
-    // after the gesture has fully ended.
-    contentEl.querySelectorAll(".tile").forEach((tile) => {
-      const id = tile.dataset.id;
-      let pressTimer = null;
-      let longPressFired = false;
-
-      const clearPress = () => {
-        if (pressTimer) clearTimeout(pressTimer);
-        pressTimer = null;
-      };
-
-      tile.addEventListener("pointerdown", (event) => {
-        event.preventDefault();
-        longPressFired = false;
-        pressTimer = setTimeout(() => {
-          longPressFired = true;
-          const history = getHistory();
-          undoLastTap(history, id);
-          tile.classList.add("tile-undo-flash");
-        }, LONG_PRESS_MS);
-      });
-
-      tile.addEventListener("pointerup", () => {
-        clearPress();
-        if (longPressFired) {
-          longPressFired = false;
-          renderTiles();
-          return;
-        }
-        const history = getHistory();
-        addTap(history, id);
-        tile.classList.add("tile-pop");
-        renderTiles();
-      });
-      tile.addEventListener("pointerleave", clearPress);
-      tile.addEventListener("pointercancel", clearPress);
     });
   }
 

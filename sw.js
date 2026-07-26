@@ -1,6 +1,6 @@
 // PHYSICA service worker: cache-first app shell so the PWA works fully offline.
 // Bump CACHE_NAME whenever any precached file changes.
-const CACHE_NAME = "physica-v1";
+const CACHE_NAME = "physica-v2";
 
 const PRECACHE_URLS = [
   "./",
@@ -9,6 +9,8 @@ const PRECACHE_URLS = [
   "css/style.css",
   "data/config.json",
   "data/problems.json",
+  "data/exams.json",
+  "data/packages.json",
   "js/app.js",
   "js/data.js",
   "js/format.js",
@@ -16,9 +18,10 @@ const PRECACHE_URLS = [
   "js/scoring.js",
   "js/snapshot.js",
   "js/storage.js",
+  "js/tiles.js",
   "js/views/home.js",
   "js/views/list.js",
-  "js/views/examSetup.js",
+  "js/views/goals.js",
   "js/views/settings.js",
   "icons/icon-192.png",
   "icons/icon-512.png",

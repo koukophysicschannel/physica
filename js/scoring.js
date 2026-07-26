@@ -107,3 +107,89 @@ export function lastTapRetention(taps, now, decay) {
   const tDays = (now - lastTs) / MS_PER_DAY;
   return retention(tDays, decay.tau, decay.floor);
 }
+
+// 目標(goal)のscopeを実問題配列に解決する。
+// chapters系はリードα(章番号を持つのはリードαのみ)、field系はリードα・重問両方から集める。
+export function resolveScope(scope, problems) {
+  if (!scope) return [];
+  if (scope.chapters === "all") {
+    return problems.filter((p) => p.source === "leadalpha");
+  }
+  if (Array.isArray(scope.chapters)) {
+    const set = new Set(scope.chapters);
+    return problems.filter((p) => p.source === "leadalpha" && set.has(p.chapter));
+  }
+  if (scope.field) {
+    return problems.filter((p) => p.field === scope.field);
+  }
+  return [];
+}
+
+// period目標の進捗用: 指定期間内のタップのみを対象に、減衰を無視した生配点を合計する。
+export function rawPointsInWindow(problems, history, config, sinceTs, now) {
+  let sum = 0;
+  for (const p of problems) {
+    const points = config.points[p.categoryKey];
+    const taps = history[p.id] || [];
+    for (const ts of taps) {
+      if (ts >= sinceTs && ts <= now) sum += points;
+    }
+  }
+  return sum;
+}
+
+// 分野別カバー率: 一度でも解いた問題数 ÷ 総問題数 × 100（配点ではなく問題数ベース、減衰非依存）。
+// config.fields に含まれない分野（「考察」等）は statsByField 同様に除外する。
+export function coverageByField(problems, history, fields) {
+  const stats = new Map(fields.map((f) => [f, { solved: 0, total: 0 }]));
+  for (const p of problems) {
+    const bucket = stats.get(p.field);
+    if (!bucket) continue;
+    bucket.total += 1;
+    const taps = history[p.id];
+    if (taps && taps.length > 0) bucket.solved += 1;
+  }
+  const coverage = new Map();
+  for (const [field, { solved, total }] of stats) {
+    coverage.set(field, total > 0 ? (solved / total) * 100 : 0);
+  }
+  return coverage;
+}
+
+// パッケージ(period目標+packageId)の日割りエンジン。
+// 総ノルマ=問題数×周回。連打での水増しを防ぐため、問題ごとにタップ数をroundsで頭打ちにする。
+export function packageProgress(scopeProblems, history, goal, decay, now) {
+  const rounds = goal.target.rounds;
+  const sinceTs = goal.createdAt;
+  const totalUnits = scopeProblems.length * rounds;
+
+  let earnedUnits = 0;
+  const remaining = [];
+  for (const p of scopeProblems) {
+    const taps = (history[p.id] || []).filter((ts) => ts >= sinceTs && ts <= now);
+    const count = Math.min(taps.length, rounds);
+    earnedUnits += count;
+    if (count < rounds) remaining.push(p);
+  }
+  const remainingUnits = totalUnits - earnedUnits;
+
+  const deadlineTs = new Date(`${goal.deadline}T00:00:00`).getTime();
+  const remainingDays = Math.max(Math.ceil((deadlineTs - now) / MS_PER_DAY), 1);
+  const todayQuota = remainingUnits > 0 ? Math.ceil(remainingUnits / remainingDays) : 0;
+
+  const sorted = remaining
+    .map((p) => ({ p, retention: lastTapRetention(history[p.id], now, decay) ?? 0 }))
+    .sort((a, b) => a.retention - b.retention)
+    .map((x) => x.p);
+  const todayProblems = sorted.slice(0, todayQuota);
+
+  return {
+    totalUnits,
+    earnedUnits,
+    remainingUnits,
+    remainingDays,
+    todayQuota,
+    todayProblems,
+    complete: remainingUnits <= 0,
+  };
+}

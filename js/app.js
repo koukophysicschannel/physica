@@ -1,14 +1,14 @@
 import { loadData } from "./data.js";
-import { loadHistory, loadExamSettings } from "./storage.js";
+import { loadHistory, loadGoals, loadProfile, migrateLegacyExamSettings } from "./storage.js";
 import { mountHome } from "./views/home.js";
 import { mountList } from "./views/list.js";
-import { mountExam } from "./views/examSetup.js";
+import { mountGoals } from "./views/goals.js";
 import { mountSettings } from "./views/settings.js";
 
 const ROUTES = {
   home: mountHome,
   list: mountList,
-  exam: mountExam,
+  goals: mountGoals,
   settings: mountSettings,
 };
 const DEFAULT_ROUTE = "home";
@@ -27,7 +27,8 @@ function ctx(data) {
   return {
     data,
     getHistory: () => loadHistory(),
-    getExamSettings: () => loadExamSettings(),
+    getGoals: () => loadGoals(),
+    getProfile: () => loadProfile(),
     navigate: (route) => {
       location.hash = `#/${route}`;
     },
@@ -48,6 +49,7 @@ async function render(data) {
 }
 
 async function main() {
+  migrateLegacyExamSettings();
   const data = await loadData();
   window.addEventListener("hashchange", () => render(data));
   if (!location.hash) location.hash = `#/${DEFAULT_ROUTE}`;

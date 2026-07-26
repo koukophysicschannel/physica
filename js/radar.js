@@ -15,7 +15,9 @@ function pointOn(angle, r) {
   return [CENTER + r * Math.sin(angle), CENTER - r * Math.cos(angle)];
 }
 
-export function renderRadarSVG(fields, valuesByField) {
+// vertex position = coverage (一度でも解いた問題の割合、減衰しない)
+// label text = expected score numeral (予想得点), kept alongside for reference
+export function renderRadarSVG(fields, coverageByField, expectedByField) {
   const n = fields.length;
   const angleStep = (Math.PI * 2) / n;
 
@@ -36,7 +38,7 @@ export function renderRadarSVG(fields, valuesByField) {
 
   const dataPts = fields
     .map((f, i) => {
-      const v = Math.max(0, Math.min(100, valuesByField.get(f) ?? 0));
+      const v = Math.max(0, Math.min(100, coverageByField.get(f) ?? 0));
       const r = (v / 100) * MAX_R;
       return pointOn(i * angleStep, r).join(",");
     })
@@ -46,14 +48,14 @@ export function renderRadarSVG(fields, valuesByField) {
     .map((f, i) => {
       const [x, y] = pointOn(i * angleStep, LABEL_R);
       const anchor = Math.abs(x - CENTER) < 4 ? "middle" : x > CENTER ? "start" : "end";
-      const v = valuesByField.get(f);
+      const v = expectedByField.get(f);
       const label = v === undefined ? f : `${f} ${Math.round(v)}`;
       return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle" class="radar-label">${label}</text>`;
     })
     .join("");
 
   return `
-    <svg viewBox="0 0 ${SIZE} ${SIZE}" class="radar-chart" role="img" aria-label="分野別予想得点レーダーチャート">
+    <svg viewBox="0 0 ${SIZE} ${SIZE}" class="radar-chart" role="img" aria-label="分野別カバー率レーダーチャート(ラベルは予想得点を併記)">
       ${ringPolygons}
       ${axisLines}
       <polygon points="${dataPts}" class="radar-data" />

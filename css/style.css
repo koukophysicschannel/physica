@@ -410,3 +410,176 @@ body {
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
+
+/* Lap-count legend (problem list) */
+
+.lap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 4px 0 12px;
+}
+
+.lap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.lap-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Goals: type picker + list */
+
+.type-picker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.type-picker-btn {
+  padding: 14px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.type-picker-btn span {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.type-picker-btn.active {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #fff;
+}
+
+.type-picker-btn.active span {
+  color: #eaf4ea;
+}
+
+.goal-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.goal-list-item:last-child {
+  border-bottom: none;
+}
+
+.goal-list-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.goal-list-type {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.goal-list-label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.goal-list-deadline {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+
+/* Home: goal cards */
+
+.quota-banner-card {
+  padding: 14px 20px;
+}
+
+.today-quota-line {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--green-dark);
+}
+
+.today-quota-line + .today-quota-line {
+  margin-top: 4px;
+}
+
+.goal-card .card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goal-type-badge {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.goal-range,
+.goal-score,
+.goal-countdown {
+  font-size: 14px;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+}
+
+.goal-radar {
+  text-align: center;
+  margin: 8px 0;
+}
+
+.goal-radar .radar-chart {
+  max-width: 220px;
+}
+
+.goal-empty {
+  padding: 4px 4px 16px;
+}
+
+.today-problems {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.today-problems-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.package-complete {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid var(--green-dark);
+  border-radius: var(--radius);
+  color: var(--green-dark);
+  font-weight: 700;
+  text-align: center;
+}
