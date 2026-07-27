@@ -7,6 +7,7 @@ const GOALS_KEY = "physica_goals_v1";
 const PROFILE_KEY = "physica_profile_v1";
 const ONBOARDING_KEY = "physica_onboarding_done_v1";
 const ANON_ID_KEY = "physica_anon_id_v1";
+const RATINGS_ADMIN_KEY = "physica_ratings_admin_v1"; // admin.html only; never touched by resetAll()
 
 export function loadHistory() {
   try {
@@ -244,6 +245,21 @@ export function resetAll() {
 // 初回起動ウィザードの完了フラグ。タップ履歴・目標・学年のいずれも保存されていない
 // 「未初期化」な状態かどうかは、このフラグの有無だけで判定する(何も選ばずスキップし
 // 続けた場合でもウィザードを一度きりにするため)。
+// admin.htmlの作業状態(問題ごとの評価ドラフト・現在位置・絞り込み)。
+// data/ratings.jsonそのものではなく、そこへエクスポートする前の下書き。
+export function loadRatingsAdminState() {
+  try {
+    const raw = localStorage.getItem(RATINGS_ADMIN_KEY);
+    return raw ? JSON.parse(raw) : { draft: {}, index: 0, filter: "all" };
+  } catch {
+    return { draft: {}, index: 0, filter: "all" };
+  }
+}
+
+export function saveRatingsAdminState(state) {
+  localStorage.setItem(RATINGS_ADMIN_KEY, JSON.stringify(state));
+}
+
 export function isOnboardingDone() {
   return localStorage.getItem(ONBOARDING_KEY) === "1";
 }

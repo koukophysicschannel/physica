@@ -29,6 +29,10 @@ TITLES_CSV = ROOT / "titles-all-mapping.csv"
 LEAD_SUPPLEMENT_CSV = ROOT / "lead-ch28-29.csv"
 JUYOMON_CSV = ROOT / "juyomon-mapping.csv"
 OUT_PATH = ROOT / "data" / "problems.json"
+# 管理者が admin.html で育てるマスタデータ。ビルド生成物ではなく、このスクリプトが
+# 読み込んで problems.json に rating フィールドとしてマージする側。存在しなくても
+# ビルドは通り、その場合は全問題がデフォルト評価(stars:2, skip:false)になる。
+RATINGS_JSON = ROOT / "data" / "ratings.json"
 
 # 章 -> 分野 mapping. lead-ch28-29-addition.md(管理者提供のlead_butsukibutsuri_taiou.xlsx
 # 対応表)に基づき確定。実際の章タイトルに基づく対応(11〜13熱/14〜20波動/21〜27電磁気/28〜29原子)。
@@ -145,9 +149,28 @@ def build_juyomon():
     return problems
 
 
+def load_ratings():
+    if not RATINGS_JSON.exists():
+        return {}
+    with open(RATINGS_JSON, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def apply_ratings(problems, ratings):
+    for p in problems:
+        r = ratings.get(p["id"], {})
+        p["rating"] = {"stars": r.get("stars", 2), "skip": r.get("skip", False)}
+
+
 def main():
     leadalpha = build_leadalpha()
     juyomon = build_juyomon()
+
+    ratings = load_ratings()
+    apply_ratings(leadalpha, ratings)
+    apply_ratings(juyomon, ratings)
+    if ratings:
+        print(f"{len(ratings)}件の評価を data/ratings.json からマージしました")
 
     # Sanity checks against spec counts (591 original + 59 added by
     # lead-ch28-29-addition.md for chapters 28-29 = 650).

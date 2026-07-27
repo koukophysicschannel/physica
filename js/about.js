@@ -165,6 +165,16 @@ function tileColorSection(config) {
   `;
 }
 
+function starRatingSection() {
+  return `
+    <section class="card about-section">
+      <h2 class="card-title">★の意味</h2>
+      <p>一部の問題には、管理者による★1〜★3の評価が付いている。タイル左上の★は、評価が既定値(★2)でない問題にだけ表示される(★3は目立つ色、★1は控えめな色)。</p>
+      <p>この評価は「今日の問題」(勉強パッケージの日々の指名)にどの問題を優先して出すかにだけ影響し、★の数によって配点や予想得点が変わることはない。★3の問題は優先的に指名され、「スキップ可」に設定された問題は指名されなくなる(タイルは淡く表示される)。</p>
+    </section>
+  `;
+}
+
 function expectedScoreSection(config) {
   const { k, cap } = config.conversion;
   return `
@@ -272,6 +282,7 @@ async function main() {
     pointsTableSection(config),
     decaySection(config),
     tileColorSection(config),
+    starRatingSection(),
     expectedScoreSection(config),
     rankSection(config),
     goalsSection(packagesRaw.packages),

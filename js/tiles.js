@@ -29,13 +29,25 @@ function tileColorStyle(config, tapCount, retention) {
   return `background-color: rgba(${rgb},${retention.toFixed(3)});`;
 }
 
+// ★2は既定値なので無表示。★3のみ強調、★1は控えめに表示する(配点には影響しない、
+// 選問の優先度のみに効く評価)。
+function starBadgeHtml(rating) {
+  const stars = rating?.stars ?? 2;
+  if (stars === 3) return `<span class="tile-star tile-star-3">★</span>`;
+  if (stars === 1) return `<span class="tile-star tile-star-1">★</span>`;
+  return "";
+}
+
 export function tileHtml(entry, now, config, label) {
   const retention = lastTapRetention(entry.taps, now, config.decay);
   const emptyClass = retention === null ? " tile-empty" : "";
   const style = tileColorStyle(config, entry.taps.length, retention);
   const count = entry.taps.length;
+  const rating = entry.problem.rating;
+  const skipClass = rating?.skip ? " tile-skippable" : "";
   return `
-    <button type="button" class="tile${emptyClass}" style="${style}" data-id="${entry.problem.id}" title="${entry.problem.title}">
+    <button type="button" class="tile${emptyClass}${skipClass}" style="${style}" data-id="${entry.problem.id}" title="${entry.problem.title}">
+      ${starBadgeHtml(rating)}
       <span class="tile-label">${label}</span>
       ${count > 1 ? `<span class="tile-count">×${count}</span>` : ""}
     </button>

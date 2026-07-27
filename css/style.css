@@ -7,6 +7,7 @@
   --green: #2b8a3e;
   --green-dark: #1f6b2e;
   --danger: #b3392c;
+  --star: #b8860b;
   --radius: 12px;
   --mono: "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace;
 }
@@ -327,6 +328,27 @@ body {
   right: 4px;
   font-size: 9px;
   color: var(--text-muted);
+}
+
+.tile-star {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 9px;
+}
+
+.tile-star-3 {
+  color: var(--star);
+  font-weight: 700;
+}
+
+.tile-star-1 {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.tile-skippable {
+  opacity: 0.55;
 }
 
 .tile-pop {
@@ -974,4 +996,150 @@ body.onboarding-active .topbar {
   border-color: var(--green-dark);
   color: #fff;
   font-weight: 700;
+}
+
+/* Admin (problem rating) page — mobile one-handed operation is the priority */
+
+.admin-view {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 4px 16px 200px;
+}
+
+.admin-progress {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 8px 0;
+}
+
+.admin-filter-row {
+  margin-bottom: 12px;
+}
+
+.admin-filter-row select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.admin-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-problem-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.admin-problem-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.admin-current-rating {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--star);
+}
+
+.admin-done {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.admin-io-row {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 8px;
+  flex-wrap: wrap;
+}
+
+/* Fixed bottom action bar: keeps the rating controls in one-handed thumb
+   reach regardless of scroll position, matching the directive's "大きなボタン
+   ...を付けて自動で次の問題へ" one-tap-per-problem flow. */
+.admin-action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+  padding: 12px max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-star-row {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-star-btn {
+  flex: 1;
+  padding: 18px 0;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--star);
+}
+
+.admin-star-btn:active {
+  background: var(--star);
+  color: #fff;
+}
+
+.admin-skip-btn {
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  width: 100%;
+}
+
+.admin-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.admin-nav-row button {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.admin-position {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
 }

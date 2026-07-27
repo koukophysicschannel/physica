@@ -190,9 +190,17 @@ export function packageProgress(scopeProblems, history, goal, decay, now) {
   const remainingDays = Math.max(Math.ceil((deadlineTs - now) / MS_PER_DAY), 1);
   const todayQuota = remainingUnits > 0 ? Math.ceil(remainingUnits / remainingDays) : 0;
 
-  const sorted = remaining
-    .map((p) => ({ p, retention: lastTapRetention(history[p.id], now, decay) ?? 0 }))
-    .sort((a, b) => a.retention - b.retention)
+  // 選問(今日の問題への指名)にだけ効かせる: スキップ可は候補から除外し、
+  // ★3は優先的に前へ。配点・totalUnits/remainingUnits等の進捗計算は
+  // ratingに関わらず全問題を対象にしたまま変えない(満点を崩さないため)。
+  const nominatable = remaining.filter((p) => !p.rating?.skip);
+  const sorted = nominatable
+    .map((p) => ({
+      p,
+      starPriority: p.rating?.stars === 3 ? 0 : 1,
+      retention: lastTapRetention(history[p.id], now, decay) ?? 0,
+    }))
+    .sort((a, b) => a.starPriority - b.starPriority || a.retention - b.retention)
     .map((x) => x.p);
   const todayProblems = sorted.slice(0, todayQuota);
 
