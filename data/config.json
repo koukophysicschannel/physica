@@ -2,6 +2,15 @@
   "edition": "プレ版",
   "subject": "物理",
   "dailyLimit": true,
+  "links": {
+    "youtube": "https://www.youtube.com/@koukoubutsuri.kaisetsu",
+    "website": "https://koukophysicschannel.github.io/butsuri-channel/"
+  },
+  "editions": {
+    "リードα": "『リードα物理基礎・物理』(数研出版、2022年11月発行 新課程初版)",
+    "重問": "『2026 物理重要問題集 物理基礎・物理』(数研出版)",
+    "注記": "リードαは2024年11月に改訂版が発行されています。お手元の版によっては問題番号・収録問題が一致しない場合があります。"
+  },
   "decay": { "tau": 7, "floor": 0.3 },
   "conversion": { "k": 1.7, "cap": 100 },
   "points": {

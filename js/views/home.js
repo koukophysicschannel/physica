@@ -57,8 +57,17 @@ function periodCardBody(goal, gs, data, history, now) {
     } else {
       const scoped = resolveScope(goal.target.scope, data.problems);
       const heldMap = computeHeldByProblem(scoped, history, data.config, now);
+      // 動画リンクはタイルの外側(兄弟要素)に置き、タップ加点の当たり判定と
+      // 絶対に重ならないようにする。今日の問題リストにのみ表示する(通常の
+      // 問題リストのタイルには追加しない)。
       const tiles = pkg.todayProblems
-        .map((p) => tileHtml(heldMap.get(p.id), now, data.config, problemShortLabel(p)))
+        .map((p) => {
+          const tile = tileHtml(heldMap.get(p.id), now, data.config, problemShortLabel(p));
+          const videoLink = p.videoId
+            ? `<a class="video-link" href="https://www.youtube.com/watch?v=${p.videoId}" target="_blank" rel="noopener" aria-label="解説動画を見る">▶</a>`
+            : "";
+          return `<div class="today-problem-item">${tile}${videoLink}</div>`;
+        })
         .join("");
       html += `
         <div class="today-problems">

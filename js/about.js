@@ -15,6 +15,18 @@ function editionSection(config) {
   `;
 }
 
+function editionsCitationSection(config) {
+  const editions = config.editions;
+  if (!editions) return "";
+  return `
+    <section class="card about-section">
+      <p>リードα: ${editions["リードα"] ?? ""}</p>
+      <p>重問: ${editions["重問"] ?? ""}</p>
+      ${editions["注記"] ? `<p>${editions["注記"]}</p>` : ""}
+    </section>
+  `;
+}
+
 function pointsTableSection(config) {
   const rows = CATEGORY_ORDER.filter((k) => k in config.points)
     .map((k) => `<tr><td>${k}</td><td class="num">${config.points[k]}点</td></tr>`)
@@ -231,6 +243,7 @@ async function main() {
 
   const view = document.getElementById("about-view");
   view.innerHTML = [
+    editionsCitationSection(config),
     editionSection(config),
     pointsTableSection(config),
     decaySection(config),

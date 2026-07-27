@@ -59,6 +59,14 @@ export function mountSettings(container, ctx) {
           <a href="mission.html" class="btn-secondary">このアプリについて見る</a>
         </div>
       </section>
+
+      <section class="card">
+        <h2 class="card-title">関連リンク</h2>
+        <div class="button-row">
+          ${data.config.links?.youtube ? `<a href="${data.config.links.youtube}" target="_blank" rel="noopener" class="btn-secondary">高校物理 解説チャンネル(YouTube)</a>` : ""}
+          ${data.config.links?.website ? `<a href="${data.config.links.website}" target="_blank" rel="noopener" class="btn-secondary">公式サイト</a>` : ""}
+        </div>
+      </section>
     `;
 
     container.querySelectorAll("[data-grade]").forEach((btn) => {
