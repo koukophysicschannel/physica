@@ -886,3 +886,70 @@ body.onboarding-active .topbar {
   flex-shrink: 0;
   color: var(--green-dark);
 }
+
+/* Scroll-to-top button */
+
+.scroll-top-btn {
+  position: fixed;
+  right: 16px;
+  bottom: calc(64px + env(safe-area-inset-bottom));
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 60;
+}
+
+.scroll-top-btn.no-bottomnav {
+  bottom: 20px;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Chapter/field jump bar (problem list) */
+
+.chapter-jump-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  margin-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.chapter-jump-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-jump {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.chip-jump.active {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #fff;
+  font-weight: 700;
+}

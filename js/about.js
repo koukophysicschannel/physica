@@ -1,4 +1,5 @@
 import { retention } from "./scoring.js";
+import { attachScrollTopButton } from "./scrollTop.js";
 
 const CATEGORY_ORDER = ["基礎CHECK", "基本例題", "基本問題", "応用問題", "重問A", "重問B", "考察"];
 
@@ -253,6 +254,8 @@ async function main() {
     goalsSection(packagesRaw.packages),
     storageSection(),
   ].join("");
+
+  attachScrollTopButton(window);
 }
 
 main();

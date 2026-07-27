@@ -2,6 +2,7 @@ import { addGoal, deleteGoal, loadProfile, saveProfile } from "../storage.js";
 import { resolveScope } from "../scoring.js";
 import { deadlineSortKey, todayStr, addDays } from "../format.js";
 import { GRADE_ORDER, GRADE_LABELS, matchesGrade } from "../grades.js";
+import { attachScrollTopButton } from "../scrollTop.js";
 
 const TYPE_LABELS = { exam: "定期考査", mocktest: "模試", rank: "志望ランク", period: "期間目標" };
 
@@ -461,7 +462,13 @@ export function mountGoals(container, ctx) {
     container.querySelector("#cancel-btn").addEventListener("click", () => goTo("form-period-choice"));
   }
 
+  let removeScrollTopButton = null;
+
   function render() {
+    if (removeScrollTopButton) {
+      removeScrollTopButton();
+      removeScrollTopButton = null;
+    }
     if (step === "list") renderList();
     else if (step === "pick-type") renderPickType();
     else if (step === "form-exam") renderFormExam();
@@ -471,7 +478,13 @@ export function mountGoals(container, ctx) {
     else if (step === "form-period-choice") renderFormPeriodChoice();
     else if (step === "form-period-package") renderFormPeriodPackage();
     else if (step === "form-period-custom") renderFormPeriodCustom();
+    // each step's render*() replaces container.innerHTML wholesale, so the
+    // button is re-attached fresh after every step transition rather than once.
+    removeScrollTopButton = attachScrollTopButton(window);
   }
 
   render();
+  return () => {
+    if (removeScrollTopButton) removeScrollTopButton();
+  };
 }
