@@ -731,6 +731,28 @@ body {
   overflow-x: auto;
 }
 
+/* KaTeX-rendered formula: overflow-x:auto is the guaranteed fallback for any
+   viewport too narrow to fit the equation; the font-size step-down at very
+   narrow widths just makes that fallback less likely to be needed. */
+.about-formula-katex {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0 0 10px;
+  overflow-x: auto;
+}
+
+.about-formula-katex .katex-display {
+  margin: 0;
+}
+
+@media (max-width: 400px) {
+  .about-formula-katex .katex {
+    font-size: 0.9em;
+  }
+}
+
 .about-table {
   width: 100%;
   border-collapse: collapse;

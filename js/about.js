@@ -7,6 +7,19 @@ function pct(v) {
   return (v * 100).toFixed(1);
 }
 
+// Trims JS floating-point noise (e.g. 1 - 0.3 === 0.7000000000000001) before
+// the value is dropped into a LaTeX string for display.
+function cleanNum(n) {
+  return Number(n.toFixed(6));
+}
+
+// katex.min.js is loaded as a plain (non-module) <script> in about.html, so it
+// attaches itself as window.katex rather than being import-able here.
+function renderFormula(latex) {
+  if (!window.katex) return `<p class="about-formula">${latex}</p>`;
+  return window.katex.renderToString(latex, { throwOnError: false, displayMode: true });
+}
+
 function editionSection(config) {
   if (!config.edition) return "";
   return `
@@ -95,13 +108,17 @@ function renderDecaySVG(tau, floor) {
 
 function decaySection(config) {
   const { tau, floor } = config.decay;
+  const oneMinusFloor = cleanNum(1 - floor);
+  const generalFormula = renderFormula("R(t) = f + (1-f)\\,e^{-\\sqrt{t/\\tau}}");
+  const concreteFormula = renderFormula(`R(t) = ${floor} + ${oneMinusFloor}\\,e^{-\\sqrt{t/${tau}}}`);
   return `
     <section class="card about-section">
       <h2 class="card-title">減少のルール(忘却曲線)</h2>
       <p>タップした点数は、時間が経過すると保持率にしたがって減っていく。</p>
       <p>タップからの経過日数を t とすると、保持率 R(t) は次の式で計算される。</p>
-      <p class="about-formula">R(t) = floor + (1 − floor) × exp(−√(t / tau))</p>
-      <p>現在の設定では、tau(基準日数)は ${tau}、floor(下限)は ${floor} になっている。</p>
+      <div class="about-formula-katex">${generalFormula}</div>
+      <p>現在の設定では、τ(基準日数)は ${tau}、下限は ${floor} になっている。この式に数値を入れると次のようになる。</p>
+      <div class="about-formula-katex">${concreteFormula}</div>
       <div class="about-chart-holder">${renderDecaySVG(tau, floor)}</div>
       <table class="about-table">
         <thead><tr><th>経過日数</th><th>保持率</th></tr></thead>

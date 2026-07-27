@@ -1,6 +1,6 @@
 // PHYSICA service worker: cache-first app shell so the PWA works fully offline.
 // Bump CACHE_NAME whenever any precached file changes.
-const CACHE_NAME = "physica-v2.11";
+const CACHE_NAME = "physica-v2.12";
 
 const PRECACHE_URLS = [
   "./",
@@ -36,6 +36,28 @@ const PRECACHE_URLS = [
   "js/views/onboarding.js",
   "icons/icon-192.png",
   "icons/icon-512.png",
+  "vendor/katex/katex.min.css",
+  "vendor/katex/katex.min.js",
+  "vendor/katex/fonts/KaTeX_AMS-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+  "vendor/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Fraktur-Bold.woff2",
+  "vendor/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Main-Bold.woff2",
+  "vendor/katex/fonts/KaTeX_Main-BoldItalic.woff2",
+  "vendor/katex/fonts/KaTeX_Main-Italic.woff2",
+  "vendor/katex/fonts/KaTeX_Main-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Math-BoldItalic.woff2",
+  "vendor/katex/fonts/KaTeX_Math-Italic.woff2",
+  "vendor/katex/fonts/KaTeX_SansSerif-Bold.woff2",
+  "vendor/katex/fonts/KaTeX_SansSerif-Italic.woff2",
+  "vendor/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Script-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Size1-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Size2-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Size3-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Size4-Regular.woff2",
+  "vendor/katex/fonts/KaTeX_Typewriter-Regular.woff2",
 ];
 
 self.addEventListener("install", (event) => {
