@@ -21,20 +21,18 @@
   - 本番URL: **https://koukophysicschannel.github.io/physica/** (v2デプロイ後も全アセット200・SW登録・オフライン起動を再確認済み)
   - サブパス配信を見越し、`manifest.json` の `start_url`/`scope`、`sw.js` のキャッシュ対象パス、`js/data.js` のfetchパス等はすべて相対パス(絶対パス `/...` を使用している箇所ゼロ)であることをリポジトリ全体grepで確認済み。
 
-## 次のタスク(このメッセージ処理中に中断)
+## 旧URLについて
 
-- 本番URL (`https://masahiroshimizu-a11y.github.io/physica/`) に対するヘッドレス再検品が未完了:
-  - 全アセット(index.html, manifest.json, sw.js, css/js/data配下, icons)が本番URL配下で404なく取得できるか
-  - Service Workerが本番オリジンで正常に登録されるか
-  - オフラインリロードでアプリが起動するか
-  - これらを確認後、最終報告としてユーザーに本番URLと検品結果を伝える
+- 移管前のURL `https://masahiroshimizu-a11y.github.io/physica/` は404を返す(GitHub Pagesは
+  個人アカウント間の移管でも旧URLを自動リダイレクトしない)。ただし**この移管は一般公開前に
+  行われたため実害なし**(旧URLが外部に共有・ブックマークされたことはない)。今後同様の
+  移管を行う際は、既に配布済みのURLだと利用者に404が見えてしまう点に注意すること。
 
 ## 注意点・引き継ぎ情報
 
 - **ローカル環境にはPlaywright-coreをscratchpad配下(`/private/tmp/.../scratchpad/pw/`)にのみ npm install済み**。プロジェクト本体には依存関係を一切追加していない(ビルド工程なしという仕様を維持)。
 - **ローカル開発サーバー**: `python3 -m http.server 8934` をプロジェクトルートで起動して動作確認していた。ESモジュール(`<script type="module">`)を使っているため `file://` では動作しない(CORSで弾かれる)。ローカルでの再検証には必ずHTTPサーバー経由でアクセスすること。
-- **git設定**: グローバルの `user.name`/`user.email` が未設定だったため、このリポジトリのローカル設定のみ `masahiroshimizu-a11y` / `301634234+masahiroshimizu-a11y@users.noreply.github.com` を設定していた(global設定には触れていない)。
-  2026-07-27にリポジトリを `koukophysicschannel` アカウントへ移管したが、**ローカルのuser.name/user.emailは更新していない**(旧アカウント名義のまま)。commit著者表示を新アカウントに揃えたい場合は別途 `git config --local user.name/user.email` の変更が必要。
+- **git設定**: グローバルの `user.name`/`user.email` は未設定のまま(global設定には触れていない)。このリポジトリのローカル設定(`git config --local`)のみ、2026-07-27の `koukophysicschannel` 個人アカウントへの移管に合わせて `koukophysicschannel` / `koukophysics.channel@gmail.com` に更新済み(以後のコミットから適用。過去のコミットの著者情報は書き換えていない)。
 - **sw.jsのキャッシュバージョン**: v2で `CACHE_NAME = "physica-v2"` に更新済み。今後 `PRECACHE_URLS` に含まれるファイルの中身を更新した場合は、このバージョン文字列をインクリメントしないと古いキャッシュが配信され続ける点に注意。
 - **タイムゾーンに関する既知の注意**: UI検品中、`daysUntil()` 自体は正しく実装されているが、**テストスクリプト側**で `toISOString().slice(0,10)` を使って試験日を生成すると、UTC変換により実機のローカル日付とズレるケースを確認した(実際の `<input type="date">` はローカル日付を返すため本番では問題なし)。今後同様のテストを書く際は要注意。
 - **データの既知の癖**: リードαの章別満点は仕様書と異なり合計1,288点(3, 4, 6章がそれぞれ+1)。これは重複データではなく実データに基づく正しい値として扱っている(詳細は上記および `PHYSICA-spec.md` 参照)。
