@@ -2613,16 +2613,16 @@
     "field": "波動",
     "title": "正弦波の波形",
     "leadChapters": [
+      14,
       15,
-      16,
-      17
+      16
     ],
     "leadProblems": [
       "la-15-kihonmondai-283",
       "la-16-kihonmondai-289",
-      "la-15-kihonrei-53",
-      "la-15-kihonmondai-281",
-      "la-17-kihonrei-57"
+      "la-14-kihonmondai-273",
+      "la-14-kihonrei-50",
+      "la-14-kihonrei-52"
     ],
     "matches": [
       {
@@ -2636,19 +2636,19 @@
         "score": 0.091
       },
       {
-        "id": "la-15-kihonrei-53",
-        "title": "正弦波の式から特定点の変位を計算する｜リードα 第15章 基本例題53【高校物理】",
+        "id": "la-14-kihonmondai-273",
+        "title": "2つの進行波の合成波形から節を求める｜リードα 第14章 基本問題273【高校物理】",
+        "score": 0.089
+      },
+      {
+        "id": "la-14-kihonrei-50",
+        "title": "y-x図から媒質のy-t図を作成する｜リードα 第14章 基本例題50【高校物理】",
+        "score": 0.073
+      },
+      {
+        "id": "la-14-kihonrei-52",
+        "title": "2つの正弦波の合成で定在波の腹を求める｜リードα 第14章 基本例題52【高校物理】",
         "score": 0.071
-      },
-      {
-        "id": "la-15-kihonmondai-281",
-        "title": "正弦波の式から振幅・周期・波長を求める｜リードα 第15章 基本問題281【高校物理】",
-        "score": 0.069
-      },
-      {
-        "id": "la-17-kihonrei-57",
-        "title": "おんさの振動数から弦の波長と速さを求める｜リードα 第17章 基本例題57【高校物理】",
-        "score": 0.069
       }
     ],
     "topScore": 0.091,
@@ -2659,16 +2659,29 @@
     "field": "波動",
     "title": "正弦波の式と定在波",
     "leadChapters": [
+      14,
       15
     ],
     "leadProblems": [
-      "la-15-ouyou-286"
+      "la-15-ouyou-286",
+      "la-14-kihonrei-52",
+      "la-14-kihonmondai-277"
     ],
     "matches": [
       {
         "id": "la-15-ouyou-286",
         "title": "反射波の合成で定在波の節を文字式で導く｜リードα 第15章 応用問題286【高校物理】",
         "score": 0.103
+      },
+      {
+        "id": "la-14-kihonrei-52",
+        "title": "2つの正弦波の合成で定在波の腹を求める｜リードα 第14章 基本例題52【高校物理】",
+        "score": 0.086
+      },
+      {
+        "id": "la-14-kihonmondai-277",
+        "title": "固定端反射で生じる定在波の節を求める｜リードα 第14章 基本問題277【高校物理】",
+        "score": 0.085
       }
     ],
     "topScore": 0.103,
@@ -2680,13 +2693,20 @@
     "title": "円形波の反射",
     "leadChapters": [
       16,
-      18
+      18,
+      20
     ],
     "leadProblems": [
+      "la-20-ouyou-354",
       "la-18-kihonmondai-317",
       "la-16-kihonmondai-288"
     ],
     "matches": [
+      {
+        "id": "la-20-ouyou-354",
+        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
+        "score": 0.075
+      },
       {
         "id": "la-18-kihonmondai-317",
         "title": "水面波の伝わる速さと観測点の振動数を求める｜リードα 第18章 基本問題317【高校物理】",
@@ -2698,7 +2718,7 @@
         "score": 0.058
       }
     ],
-    "topScore": 0.074,
+    "topScore": 0.075,
     "confidence": "低(要確認)"
   },
   "81": {
@@ -2706,7 +2726,7 @@
     "field": "波動",
     "title": "平面波の反射・屈折・干渉",
     "leadChapters": [
-      15,
+      14,
       16,
       19
     ],
@@ -2715,7 +2735,7 @@
       "la-16-kihonmondai-288",
       "la-19-kihonmondai-332",
       "la-19-kihonmondai-331",
-      "la-15-ouyou-286"
+      "la-14-kihonmondai-277"
     ],
     "matches": [
       {
@@ -2739,8 +2759,8 @@
         "score": 0.074
       },
       {
-        "id": "la-15-ouyou-286",
-        "title": "反射波の合成で定在波の節を文字式で導く｜リードα 第15章 応用問題286【高校物理】",
+        "id": "la-14-kihonmondai-277",
+        "title": "固定端反射で生じる定在波の節を求める｜リードα 第14章 基本問題277【高校物理】",
         "score": 0.063
       }
     ],
@@ -2843,11 +2863,15 @@
     "field": "波動",
     "title": "弦の振動",
     "leadChapters": [
-      17
+      14,
+      17,
+      20
     ],
     "leadProblems": [
       "la-17-kihonmondai-301",
-      "la-17-kihonrei-57"
+      "la-14-kihonmondai-269",
+      "la-17-kihonrei-57",
+      "la-20-ouyou-354"
     ],
     "matches": [
       {
@@ -2856,9 +2880,19 @@
         "score": 0.061
       },
       {
+        "id": "la-14-kihonmondai-269",
+        "title": "原点の振動をy-t図に表し比較する｜リードα 第14章 基本問題269【高校物理】",
+        "score": 0.06
+      },
+      {
         "id": "la-17-kihonrei-57",
         "title": "おんさの振動数から弦の波長と速さを求める｜リードα 第17章 基本例題57【高校物理】",
         "score": 0.058
+      },
+      {
+        "id": "la-20-ouyou-354",
+        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
+        "score": 0.057
       }
     ],
     "topScore": 0.061,
@@ -3059,26 +3093,31 @@
     "field": "波動",
     "title": "ヤングの実験",
     "leadChapters": [
-      16,
-      19
+      20
     ],
     "leadProblems": [
-      "la-19-kihonmondai-327",
-      "la-16-ouyou-291"
+      "la-20-kihonrei-65",
+      "la-20-kihonmondai-346",
+      "la-20-ouyou-354"
     ],
     "matches": [
       {
-        "id": "la-19-kihonmondai-327",
-        "title": "フィゾーの歯車法による光速測定の式を導出する｜リードα 第19章 基本問題327【高校物理】",
-        "score": 0.055
+        "id": "la-20-kihonrei-65",
+        "title": "空所補充でヤングの実験の明線条件を導く｜リードα 第20章 基本例題65【高校物理】",
+        "score": 0.102
       },
       {
-        "id": "la-16-ouyou-291",
-        "title": "位相差のある2波源の干渉腹線を求める｜リードα 第16章 応用問題291【高校物理】",
-        "score": 0.038
+        "id": "la-20-kihonmondai-346",
+        "title": "空所補充でヤングの実験の2色が重なる間隔を求める｜リードα 第20章 基本問題346【高校物理】",
+        "score": 0.091
+      },
+      {
+        "id": "la-20-ouyou-354",
+        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
+        "score": 0.077
       }
     ],
-    "topScore": 0.055,
+    "topScore": 0.102,
     "confidence": "低(要確認)"
   },
   "94": {
@@ -3086,16 +3125,29 @@
     "field": "波動",
     "title": "回折格子",
     "leadChapters": [
+      14,
       16,
-      17
+      17,
+      20
     ],
     "leadProblems": [
+      "la-20-ouyou-353",
+      "la-20-kihonrei-66",
       "la-16-kihonmondai-288",
       "la-17-ouyou-310",
-      "la-17-kihonmondai-305",
-      "la-17-kihonmondai-309"
+      "la-14-kihonrei-49"
     ],
     "matches": [
+      {
+        "id": "la-20-ouyou-353",
+        "title": "傾けて入射した回折格子の明線の方向を求める｜リードα 第20章 応用問題353【高校物理】",
+        "score": 0.151
+      },
+      {
+        "id": "la-20-kihonrei-66",
+        "title": "空所補充で回折格子の明線条件からみぞの本数を求める｜リードα 第20章 基本例題66【高校物理】",
+        "score": 0.143
+      },
       {
         "id": "la-16-kihonmondai-288",
         "title": "水面波干渉で定在波の腹の位置を求める｜リードα 第16章 基本問題288【高校物理】",
@@ -3107,17 +3159,12 @@
         "score": 0.135
       },
       {
-        "id": "la-17-kihonmondai-305",
-        "title": "閉管の定在波の節の位置から波長を求める｜リードα 第17章 基本問題305【高校物理】",
-        "score": 0.113
-      },
-      {
-        "id": "la-17-kihonmondai-309",
-        "title": "密度変化グラフから開管の反射位置を求める｜リードα 第17章 基本問題309【高校物理】",
-        "score": 0.111
+        "id": "la-14-kihonrei-49",
+        "title": "波形図から波長・速さと速度0の位置を求める｜リードα 第14章 基本例題49【高校物理】",
+        "score": 0.132
       }
     ],
-    "topScore": 0.137,
+    "topScore": 0.151,
     "confidence": "中"
   },
   "95": {
@@ -3125,25 +3172,44 @@
     "field": "波動",
     "title": "薄膜による光の干渉",
     "leadChapters": [
-      19
+      19,
+      20
     ],
     "leadProblems": [
+      "la-20-ouyou-354",
       "la-19-kihonmondai-332",
-      "la-19-kihonmondai-327"
+      "la-20-kihonmondai-348",
+      "la-19-kihonmondai-327",
+      "la-20-kihonrei-67"
     ],
     "matches": [
+      {
+        "id": "la-20-ouyou-354",
+        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
+        "score": 0.068
+      },
       {
         "id": "la-19-kihonmondai-332",
         "title": "3層の境界面での屈折角と全反射条件を導出する｜リードα 第19章 基本問題332【高校物理】",
         "score": 0.066
       },
       {
+        "id": "la-20-kihonmondai-348",
+        "title": "油膜表面・裏面反射光が強めあう条件を求める｜リードα 第20章 基本問題348【高校物理】",
+        "score": 0.049
+      },
+      {
         "id": "la-19-kihonmondai-327",
         "title": "フィゾーの歯車法による光速測定の式を導出する｜リードα 第19章 基本問題327【高校物理】",
         "score": 0.048
+      },
+      {
+        "id": "la-20-kihonrei-67",
+        "title": "薄膜表面・裏面反射光の位相差と最小膜厚を求める｜リードα 第20章 基本例題67【高校物理】",
+        "score": 0.048
       }
     ],
-    "topScore": 0.066,
+    "topScore": 0.068,
     "confidence": "低(要確認)"
   },
   "96": {
@@ -3151,70 +3217,39 @@
     "field": "波動",
     "title": "くさび形領域による光の干渉",
     "leadChapters": [
-      16,
-      19
+      20
     ],
     "leadProblems": [
-      "la-19-kihonmondai-327",
-      "la-16-ouyou-291"
+      "la-20-kihonmondai-350"
     ],
     "matches": [
       {
-        "id": "la-19-kihonmondai-327",
-        "title": "フィゾーの歯車法による光速測定の式を導出する｜リードα 第19章 基本問題327【高校物理】",
-        "score": 0.05
-      },
-      {
-        "id": "la-16-ouyou-291",
-        "title": "位相差のある2波源の干渉腹線を求める｜リードα 第16章 応用問題291【高校物理】",
-        "score": 0.035
+        "id": "la-20-kihonmondai-350",
+        "title": "くさび形空気層の干渉縞からアルミ箔の厚さを求める｜リードα 第20章 基本問題350【高校物理】",
+        "score": 0.14
       }
     ],
-    "topScore": 0.05,
-    "confidence": "低(要確認)"
+    "topScore": 0.14,
+    "confidence": "中"
   },
   "97": {
     "num": 97,
     "field": "波動",
     "title": "ニュートンリング",
     "leadChapters": [
-      19
+      20
     ],
     "leadProblems": [
-      "la-19-ouyou-344",
-      "la-19-ouyou-345",
-      "la-19-kihonmondai-335",
-      "la-19-kihonmondai-334",
-      "la-19-kihonmondai-336"
+      "la-20-kihonmondai-351"
     ],
     "matches": [
       {
-        "id": "la-19-ouyou-344",
-        "title": "凸レンズと凹レンズを組み合わせた系の像を求める｜リードα 第19章 応用問題344【高校物理】",
-        "score": 0.055
-      },
-      {
-        "id": "la-19-ouyou-345",
-        "title": "凸レンズと凹面鏡が組み合う系で実像を特定する｜リードα 第19章 応用問題345【高校物理】",
-        "score": 0.054
-      },
-      {
-        "id": "la-19-kihonmondai-335",
-        "title": "凸レンズ通過前後の光の波面の形状を選ぶ｜リードα 第19章 基本問題335【高校物理】",
-        "score": 0.042
-      },
-      {
-        "id": "la-19-kihonmondai-334",
-        "title": "凸レンズ・凹レンズがつくる像を作図で求める｜リードα 第19章 基本問題334【高校物理】",
-        "score": 0.042
-      },
-      {
-        "id": "la-19-kihonmondai-336",
-        "title": "空所補充で凸レンズ・凹レンズの像と倍率を求める｜リードα 第19章 基本問題336【高校物理】",
-        "score": 0.041
+        "id": "la-20-kihonmondai-351",
+        "title": "ニュートンリングの暗環半径を条件を変えて比較する｜リードα 第20章 基本問題351【高校物理】",
+        "score": 0.096
       }
     ],
-    "topScore": 0.055,
+    "topScore": 0.096,
     "confidence": "低(要確認)"
   },
   "98": {
@@ -3222,13 +3257,20 @@
     "field": "波動",
     "title": "マイケルソン干渉計",
     "leadChapters": [
-      19
+      19,
+      20
     ],
     "leadProblems": [
+      "la-20-ouyou-354",
       "la-19-ouyou-343",
       "la-19-ouyou-341"
     ],
     "matches": [
+      {
+        "id": "la-20-ouyou-354",
+        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
+        "score": 0.14
+      },
       {
         "id": "la-19-ouyou-343",
         "title": "容器内光源の見かけの深さから液体の屈折率を求める｜リードα 第19章 応用問題343【高校物理】",
@@ -3240,7 +3282,7 @@
         "score": 0.105
       }
     ],
-    "topScore": 0.131,
+    "topScore": 0.14,
     "confidence": "中"
   },
   "99": {
@@ -3268,23 +3310,16 @@
     "field": "電磁気",
     "title": "箔検電器",
     "leadChapters": [
-      20,
       21
     ],
     "leadProblems": [
-      "la-21-kihonmondai-360",
-      "la-20-ouyou-354"
+      "la-21-kihonmondai-360"
     ],
     "matches": [
       {
         "id": "la-21-kihonmondai-360",
         "title": "箔検電器に帯電棒を近づけ指で触れる実験を説明する｜リードα 第21章 基本問題360【高校物理】",
         "score": 0.067
-      },
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.053
       }
     ],
     "topScore": 0.067,
@@ -3403,14 +3438,12 @@
     "field": "電磁気",
     "title": "荷電粒子の運動",
     "leadChapters": [
-      20,
       21,
       24,
       25
     ],
     "leadProblems": [
       "la-25-kihonmondai-436",
-      "la-20-ouyou-354",
       "la-24-kihonmondai-408",
       "la-25-ouyou-441",
       "la-21-kihonmondai-368"
@@ -3420,11 +3453,6 @@
         "id": "la-25-kihonmondai-436",
         "title": "磁場内を円運動する電子の半径と周期を求める｜リードα 第25章 基本問題436【高校物理】",
         "score": 0.075
-      },
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.057
       },
       {
         "id": "la-24-kihonmondai-408",
@@ -3488,21 +3516,14 @@
     "field": "電磁気",
     "title": "ブラウン管の原理",
     "leadChapters": [
-      20,
       24,
       25
     ],
     "leadProblems": [
-      "la-20-ouyou-354",
       "la-24-kihonmondai-408",
       "la-25-ouyou-442"
     ],
     "matches": [
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.052
-      },
       {
         "id": "la-24-kihonmondai-408",
         "title": "自由電子の運動モデルからオームの法則を導く｜リードα 第24章 基本問題408【高校物理】",
@@ -3514,7 +3535,7 @@
         "score": 0.051
       }
     ],
-    "topScore": 0.052,
+    "topScore": 0.051,
     "confidence": "低(要確認)"
   },
   "107": {
@@ -3604,14 +3625,15 @@
     "field": "電磁気",
     "title": "ばね付きコンデンサー",
     "leadChapters": [
-      22
+      22,
+      27
     ],
     "leadProblems": [
       "la-22-kihonmondai-375",
       "la-22-ouyou-391",
+      "la-27-kihonmondai-465",
       "la-22-kihonmondai-379",
-      "la-22-kihonmondai-381",
-      "la-22-kihonmondai-376"
+      "la-22-kihonmondai-381"
     ],
     "matches": [
       {
@@ -3625,6 +3647,11 @@
         "score": 0.103
       },
       {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.094
+      },
+      {
         "id": "la-22-kihonmondai-379",
         "title": "直列接続コンデンサーの合成容量と電気量を求める｜リードα 第22章 基本問題379【高校物理】",
         "score": 0.091
@@ -3633,11 +3660,6 @@
         "id": "la-22-kihonmondai-381",
         "title": "並列と直列接続時のコンデンサーの耐電圧を求める｜リードα 第22章 基本問題381【高校物理】",
         "score": 0.091
-      },
-      {
-        "id": "la-22-kihonmondai-376",
-        "title": "直列3つのコンデンサーの電圧配分から容量を求める｜リードα 第22章 基本問題376【高校物理】",
-        "score": 0.09
       }
     ],
     "topScore": 0.106,
@@ -3694,16 +3716,22 @@
     "field": "電磁気",
     "title": "コンデンサーの極板が受ける力",
     "leadChapters": [
-      22
+      22,
+      27
     ],
     "leadProblems": [
+      "la-27-kihonmondai-465",
       "la-22-kihonmondai-375",
       "la-22-kihonmondai-379",
       "la-22-kihonmondai-381",
-      "la-22-kihonmondai-376",
-      "la-22-ouyou-388"
+      "la-22-kihonmondai-376"
     ],
     "matches": [
+      {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.179
+      },
       {
         "id": "la-22-kihonmondai-375",
         "title": "極板面積と間隔からコンデンサーの電気容量を求める｜リードα 第22章 基本問題375【高校物理】",
@@ -3723,14 +3751,9 @@
         "id": "la-22-kihonmondai-376",
         "title": "直列3つのコンデンサーの電圧配分から容量を求める｜リードα 第22章 基本問題376【高校物理】",
         "score": 0.15
-      },
-      {
-        "id": "la-22-ouyou-388",
-        "title": "電気力線の本数から電場とコンデンサーの容量を求める｜リードα 第22章 応用問題388【高校物理】",
-        "score": 0.148
       }
     ],
-    "topScore": 0.169,
+    "topScore": 0.179,
     "confidence": "中"
   },
   "112": {
@@ -3961,16 +3984,23 @@
     "field": "電磁気",
     "title": "電球とダイオードを含む直流回路",
     "leadChapters": [
-      24
+      24,
+      27
     ],
     "leadProblems": [
       "la-24-kihonmondai-419",
+      "la-27-kihonmondai-462",
       "la-24-kihonmondai-413"
     ],
     "matches": [
       {
         "id": "la-24-kihonmondai-419",
         "title": "電球を含む回路で非直線抵抗の電流を求める｜リードα 第24章 基本問題419【高校物理】",
+        "score": 0.109
+      },
+      {
+        "id": "la-27-kihonmondai-462",
+        "title": "ダイオード回路の整流前後の電位変化を求める｜リードα 第27章 基本問題462【高校物理】",
         "score": 0.109
       },
       {
@@ -3987,11 +4017,14 @@
     "field": "電磁気",
     "title": "発光ダイオードを含む直流回路",
     "leadChapters": [
-      24
+      24,
+      27
     ],
     "leadProblems": [
       "la-24-kihonmondai-413",
       "la-24-kihonmondai-419",
+      "la-27-kihonmondai-462",
+      "la-27-kihonrei-93",
       "la-24-kihonmondai-422"
     ],
     "matches": [
@@ -4004,6 +4037,16 @@
         "id": "la-24-kihonmondai-419",
         "title": "電球を含む回路で非直線抵抗の電流を求める｜リードα 第24章 基本問題419【高校物理】",
         "score": 0.125
+      },
+      {
+        "id": "la-27-kihonmondai-462",
+        "title": "ダイオード回路の整流前後の電位変化を求める｜リードα 第27章 基本問題462【高校物理】",
+        "score": 0.125
+      },
+      {
+        "id": "la-27-kihonrei-93",
+        "title": "電気振動回路の振動電流と電磁波の波長を求める｜リードα 第27章 基本例題93【高校物理】",
+        "score": 0.105
       },
       {
         "id": "la-24-kihonmondai-422",
@@ -4019,16 +4062,23 @@
     "field": "電磁気",
     "title": "コンデンサーを含む直流回路・最大消費電力",
     "leadChapters": [
-      24
+      24,
+      27
     ],
     "leadProblems": [
-      "la-24-kihonmondai-413"
+      "la-24-kihonmondai-413",
+      "la-27-kihonmondai-465"
     ],
     "matches": [
       {
         "id": "la-24-kihonmondai-413",
         "title": "抵抗とコンデンサーを含む回路の電位と電気量を求める｜リードα 第24章 基本問題413【高校物理】",
         "score": 0.186
+      },
+      {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.179
       }
     ],
     "topScore": 0.186,
@@ -4039,16 +4089,23 @@
     "field": "電磁気",
     "title": "電圧と電流の関係",
     "leadChapters": [
-      23
+      23,
+      27
     ],
     "leadProblems": [
-      "la-23-ouyou-403"
+      "la-23-ouyou-403",
+      "la-27-kihonmondai-463"
     ],
     "matches": [
       {
         "id": "la-23-ouyou-403",
         "title": "自由電子の速さと電流の関係を式で求める｜リードα 第23章 応用問題403【高校物理】",
         "score": 0.143
+      },
+      {
+        "id": "la-27-kihonmondai-463",
+        "title": "変圧器の一次二次の電圧と電流を求める｜リードα 第27章 基本問題463【高校物理】",
+        "score": 0.1
       }
     ],
     "topScore": 0.143,
@@ -4059,19 +4116,47 @@
     "field": "電磁気",
     "title": "ハシゴ型に連結を増やしていく回路",
     "leadChapters": [
-      20
+      22,
+      23,
+      24,
+      26,
+      27
     ],
     "leadProblems": [
-      "la-20-ouyou-354"
+      "la-27-kihonrei-92",
+      "la-24-kihonrei-79",
+      "la-26-ouyou-457",
+      "la-22-kihonmondai-380",
+      "la-23-kihonmondai-396"
     ],
     "matches": [
       {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.047
+        "id": "la-27-kihonrei-92",
+        "title": "並列回路の空所補充で共振周波数を求める｜リードα 第27章 基本例題92【高校物理】",
+        "score": 0.032
+      },
+      {
+        "id": "la-24-kihonrei-79",
+        "title": "キルヒホッフの法則で回路の電流を式で表す｜リードα 第24章 基本例題79【高校物理】",
+        "score": 0.031
+      },
+      {
+        "id": "la-26-ouyou-457",
+        "title": "LR回路のスイッチ開閉時の電流を求める｜リードα 第26章 応用問題457【高校物理】",
+        "score": 0.031
+      },
+      {
+        "id": "la-22-kihonmondai-380",
+        "title": "直並列混合回路の合成容量と電気量を求める｜リードα 第22章 基本問題380【高校物理】",
+        "score": 0.031
+      },
+      {
+        "id": "la-23-kihonmondai-396",
+        "title": "直列接続回路の各点電圧と合成抵抗を求める｜リードα 第23章 基本問題396【高校物理】",
+        "score": 0.031
       }
     ],
-    "topScore": 0.047,
+    "topScore": 0.032,
     "confidence": "低(要確認)"
   },
   "125": {
@@ -4144,7 +4229,6 @@
     "field": "電磁気",
     "title": "一様な磁場内の荷電粒子の運動",
     "leadChapters": [
-      20,
       21,
       24,
       25
@@ -4152,9 +4236,9 @@
     "leadProblems": [
       "la-21-kihonrei-70",
       "la-25-kihonmondai-436",
-      "la-20-ouyou-354",
       "la-24-kihonmondai-408",
-      "la-25-ouyou-441"
+      "la-25-ouyou-441",
+      "la-25-kihonrei-86"
     ],
     "matches": [
       {
@@ -4168,11 +4252,6 @@
         "score": 0.073
       },
       {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.055
-      },
-      {
         "id": "la-24-kihonmondai-408",
         "title": "自由電子の運動モデルからオームの法則を導く｜リードα 第24章 基本問題408【高校物理】",
         "score": 0.054
@@ -4180,6 +4259,11 @@
       {
         "id": "la-25-ouyou-441",
         "title": "磁場境界を出入りする粒子の滞在時間を求める｜リードα 第25章 応用問題441【高校物理】",
+        "score": 0.054
+      },
+      {
+        "id": "la-25-kihonrei-86",
+        "title": "磁場内を進む陽子が飛び出すまでの時間を求める｜リードα 第25章 基本例題86【高校物理】",
         "score": 0.054
       }
     ],
@@ -4231,24 +4315,17 @@
     "field": "電磁気",
     "title": "電磁場中の荷電粒子の運動",
     "leadChapters": [
-      20,
       24,
       25,
       26
     ],
     "leadProblems": [
-      "la-20-ouyou-354",
       "la-24-kihonmondai-408",
       "la-25-ouyou-441",
       "la-25-kihonmondai-436",
       "la-26-kihonrei-88"
     ],
     "matches": [
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.048
-      },
       {
         "id": "la-24-kihonmondai-408",
         "title": "自由電子の運動モデルからオームの法則を導く｜リードα 第24章 基本問題408【高校物理】",
@@ -4270,7 +4347,7 @@
         "score": 0.033
       }
     ],
-    "topScore": 0.048,
+    "topScore": 0.047,
     "confidence": "低(要確認)"
   },
   "131": {
@@ -4278,14 +4355,12 @@
     "field": "電磁気",
     "title": "金属円筒中を落下するネオジム磁石",
     "leadChapters": [
-      20,
       25,
       26
     ],
     "leadProblems": [
       "la-26-kihonmondai-449",
       "la-26-kihonmondai-446",
-      "la-20-ouyou-354",
       "la-25-kihonmondai-435"
     ],
     "matches": [
@@ -4298,11 +4373,6 @@
         "id": "la-26-kihonmondai-446",
         "title": "磁場中を動く金属棒の誘導起電力を求める｜リードα 第26章 基本問題446【高校物理】",
         "score": 0.049
-      },
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.048
       },
       {
         "id": "la-25-kihonmondai-435",
@@ -4447,60 +4517,43 @@
     "field": "電磁気",
     "title": "回転する導体棒に生じる誘導起電力",
     "leadChapters": [
-      26
+      26,
+      27
     ],
     "leadProblems": [
-      "la-26-ouyou-454",
-      "la-26-kihonmondai-444",
-      "la-26-kihonmondai-453",
-      "la-26-kihonmondai-451",
-      "la-26-kihonmondai-446"
+      "la-27-kihonmondai-461",
+      "la-26-ouyou-454"
     ],
     "matches": [
+      {
+        "id": "la-27-kihonmondai-461",
+        "title": "回転するコイルの空所補充で誘導起電力を求める｜リードα 第27章 基本問題461【高校物理】",
+        "score": 0.154
+      },
       {
         "id": "la-26-ouyou-454",
         "title": "磁場を通過するコイルの誘導起電力を求める｜リードα 第26章 応用問題454【高校物理】",
         "score": 0.115
-      },
-      {
-        "id": "la-26-kihonmondai-444",
-        "title": "コイルの磁束変化から誘導起電力を求める｜リードα 第26章 基本問題444【高校物理】",
-        "score": 0.098
-      },
-      {
-        "id": "la-26-kihonmondai-453",
-        "title": "相互インダクタンスで生じる起電力を描く｜リードα 第26章 基本問題453【高校物理】",
-        "score": 0.096
-      },
-      {
-        "id": "la-26-kihonmondai-451",
-        "title": "電流グラフからコイルの誘導起電力を描く｜リードα 第26章 基本問題451【高校物理】",
-        "score": 0.096
-      },
-      {
-        "id": "la-26-kihonmondai-446",
-        "title": "磁場中を動く金属棒の誘導起電力を求める｜リードα 第26章 基本問題446【高校物理】",
-        "score": 0.096
       }
     ],
-    "topScore": 0.115,
-    "confidence": "低(要確認)"
+    "topScore": 0.154,
+    "confidence": "中"
   },
   "137": {
     "num": 137,
     "field": "電磁気",
     "title": "相互誘導",
     "leadChapters": [
-      20,
       22,
+      25,
       26
     ],
     "leadProblems": [
       "la-22-kihonrei-74",
       "la-26-kihonmondai-444",
       "la-26-kihonmondai-451",
-      "la-20-ouyou-354",
-      "la-26-ouyou-454"
+      "la-26-ouyou-454",
+      "la-25-kihonmondai-433"
     ],
     "matches": [
       {
@@ -4519,14 +4572,14 @@
         "score": 0.06
       },
       {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.059
-      },
-      {
         "id": "la-26-ouyou-454",
         "title": "磁場を通過するコイルの誘導起電力を求める｜リードα 第26章 応用問題454【高校物理】",
         "score": 0.059
+      },
+      {
+        "id": "la-25-kihonmondai-433",
+        "title": "モーターのコイルが受ける力と回転方向を求める｜リードα 第25章 基本問題433【高校物理】",
+        "score": 0.057
       }
     ],
     "topScore": 0.071,
@@ -4537,32 +4590,45 @@
     "field": "電磁気",
     "title": "コイルを含む直流回路",
     "leadChapters": [
-      20,
-      24
+      24,
+      26,
+      27
     ],
     "leadProblems": [
-      "la-20-ouyou-354",
       "la-24-kihonmondai-419",
-      "la-24-kihonmondai-413"
+      "la-27-kihonmondai-462",
+      "la-24-kihonmondai-413",
+      "la-26-kihonmondai-445",
+      "la-24-kihonrei-79"
     ],
     "matches": [
-      {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.115
-      },
       {
         "id": "la-24-kihonmondai-419",
         "title": "電球を含む回路で非直線抵抗の電流を求める｜リードα 第24章 基本問題419【高校物理】",
         "score": 0.094
       },
       {
+        "id": "la-27-kihonmondai-462",
+        "title": "ダイオード回路の整流前後の電位変化を求める｜リードα 第27章 基本問題462【高校物理】",
+        "score": 0.094
+      },
+      {
         "id": "la-24-kihonmondai-413",
         "title": "抵抗とコンデンサーを含む回路の電位と電気量を求める｜リードα 第24章 基本問題413【高校物理】",
         "score": 0.086
+      },
+      {
+        "id": "la-26-kihonmondai-445",
+        "title": "直線電流の変化で誘導電流の向きを判断する｜リードα 第26章 基本問題445【高校物理】",
+        "score": 0.077
+      },
+      {
+        "id": "la-24-kihonrei-79",
+        "title": "キルヒホッフの法則で回路の電流を式で表す｜リードα 第24章 基本例題79【高校物理】",
+        "score": 0.075
       }
     ],
-    "topScore": 0.115,
+    "topScore": 0.094,
     "confidence": "低(要確認)"
   },
   "139": {
@@ -4623,10 +4689,12 @@
     "field": "電磁気",
     "title": "交流の発生",
     "leadChapters": [
-      26
+      26,
+      27
     ],
     "leadProblems": [
       "la-26-ouyou-458",
+      "la-27-kihonmondai-461",
       "la-26-ouyou-454"
     ],
     "matches": [
@@ -4634,6 +4702,11 @@
         "id": "la-26-ouyou-458",
         "title": "磁場中で回転するL字形導体棒の角速度を求める｜リードα 第26章 応用問題458【高校物理】",
         "score": 0.123
+      },
+      {
+        "id": "la-27-kihonmondai-461",
+        "title": "回転するコイルの空所補充で誘導起電力を求める｜リードα 第27章 基本問題461【高校物理】",
+        "score": 0.103
       },
       {
         "id": "la-26-ouyou-454",
@@ -4649,19 +4722,19 @@
     "field": "電磁気",
     "title": "交流の送電",
     "leadChapters": [
-      20
+      27
     ],
     "leadProblems": [
-      "la-20-ouyou-354"
+      "la-27-kihonmondai-463"
     ],
     "matches": [
       {
-        "id": "la-20-ouyou-354",
-        "title": "マイケルソン干渉計で光強度の変化を調べる｜リードα 第20章 応用問題354【高校物理】",
-        "score": 0.054
+        "id": "la-27-kihonmondai-463",
+        "title": "変圧器の一次二次の電圧と電流を求める｜リードα 第27章 基本問題463【高校物理】",
+        "score": 0.036
       }
     ],
-    "topScore": 0.054,
+    "topScore": 0.036,
     "confidence": "低(要確認)"
   },
   "143": {
@@ -4670,15 +4743,19 @@
     "title": "RLC直列回路",
     "leadChapters": [
       22,
-      24
+      27
     ],
     "leadProblems": [
+      "la-27-kihonmondai-465",
       "la-22-kihonmondai-384",
-      "la-22-kihonrei-75",
-      "la-24-kihonmondai-413",
-      "la-24-kihonmondai-412"
+      "la-22-kihonrei-75"
     ],
     "matches": [
+      {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.19
+      },
       {
         "id": "la-22-kihonmondai-384",
         "title": "充電したコンデンサーを別につないだときの電圧を求める｜リードα 第22章 基本問題384【高校物理】",
@@ -4688,19 +4765,9 @@
         "id": "la-22-kihonrei-75",
         "title": "コンデンサーをつないだときの静電エネルギー減少量を求める｜リードα 第22章 基本例題75【高校物理】",
         "score": 0.136
-      },
-      {
-        "id": "la-24-kihonmondai-413",
-        "title": "抵抗とコンデンサーを含む回路の電位と電気量を求める｜リードα 第24章 基本問題413【高校物理】",
-        "score": 0.123
-      },
-      {
-        "id": "la-24-kihonmondai-412",
-        "title": "電池2個を直列・並列につないだ電流を求める｜リードα 第24章 基本問題412【高校物理】",
-        "score": 0.113
       }
     ],
-    "topScore": 0.156,
+    "topScore": 0.19,
     "confidence": "中"
   },
   "144": {
@@ -4709,14 +4776,19 @@
     "title": "RLC並列回路",
     "leadChapters": [
       22,
-      24
+      27
     ],
     "leadProblems": [
+      "la-27-kihonmondai-465",
       "la-22-kihonmondai-384",
-      "la-22-kihonrei-75",
-      "la-24-kihonmondai-413"
+      "la-22-kihonrei-75"
     ],
     "matches": [
+      {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.19
+      },
       {
         "id": "la-22-kihonmondai-384",
         "title": "充電したコンデンサーを別につないだときの電圧を求める｜リードα 第22章 基本問題384【高校物理】",
@@ -4726,14 +4798,9 @@
         "id": "la-22-kihonrei-75",
         "title": "コンデンサーをつないだときの静電エネルギー減少量を求める｜リードα 第22章 基本例題75【高校物理】",
         "score": 0.136
-      },
-      {
-        "id": "la-24-kihonmondai-413",
-        "title": "抵抗とコンデンサーを含む回路の電位と電気量を求める｜リードα 第24章 基本問題413【高校物理】",
-        "score": 0.123
       }
     ],
-    "topScore": 0.156,
+    "topScore": 0.19,
     "confidence": "中"
   },
   "145": {
@@ -4742,16 +4809,22 @@
     "title": "電気振動",
     "leadChapters": [
       22,
-      24
+      24,
+      27
     ],
     "leadProblems": [
+      "la-27-kihonmondai-465",
       "la-22-ouyou-388",
       "la-24-kihonmondai-413",
       "la-22-kihonmondai-379",
-      "la-22-kihonmondai-375",
-      "la-22-kihonmondai-385"
+      "la-22-kihonmondai-375"
     ],
     "matches": [
+      {
+        "id": "la-27-kihonmondai-465",
+        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
+        "score": 0.13
+      },
       {
         "id": "la-22-ouyou-388",
         "title": "電気力線の本数から電場とコンデンサーの容量を求める｜リードα 第22章 応用問題388【高校物理】",
@@ -4771,14 +4844,9 @@
         "id": "la-22-kihonmondai-375",
         "title": "極板面積と間隔からコンデンサーの電気容量を求める｜リードα 第22章 基本問題375【高校物理】",
         "score": 0.103
-      },
-      {
-        "id": "la-22-kihonmondai-385",
-        "title": "2つの電池を使った回路でコンデンサーの電気量を求める｜リードα 第22章 基本問題385【高校物理】",
-        "score": 0.102
       }
     ],
-    "topScore": 0.121,
+    "topScore": 0.13,
     "confidence": "中"
   },
   "146": {
@@ -4788,20 +4856,30 @@
     "leadChapters": [
       22,
       24,
-      26
+      27
     ],
     "leadProblems": [
       "la-24-ouyou-424",
+      "la-27-kihonrei-93",
+      "la-27-ouyou-473",
       "la-22-ouyou-390",
-      "la-24-kihonmondai-420",
-      "la-24-ouyou-423",
-      "la-26-ouyou-457"
+      "la-24-kihonmondai-420"
     ],
     "matches": [
       {
         "id": "la-24-ouyou-424",
         "title": "スイッチ開閉前後の消費電力と電流を比較する｜リードα 第24章 応用問題424【高校物理】",
         "score": 0.068
+      },
+      {
+        "id": "la-27-kihonrei-93",
+        "title": "電気振動回路の振動電流と電磁波の波長を求める｜リードα 第27章 基本例題93【高校物理】",
+        "score": 0.068
+      },
+      {
+        "id": "la-27-ouyou-473",
+        "title": "LC回路のスイッチ切替後の振動電流を求める｜リードα 第27章 応用問題473【高校物理】",
+        "score": 0.067
       },
       {
         "id": "la-22-ouyou-390",
@@ -4812,16 +4890,6 @@
         "id": "la-24-kihonmondai-420",
         "title": "スイッチ開閉時のコンデンサー回路の過渡電流を求める｜リードα 第24章 基本問題420【高校物理】",
         "score": 0.062
-      },
-      {
-        "id": "la-24-ouyou-423",
-        "title": "スイッチ開閉時の抵抗値と電流の向きをキルヒホッフで求める｜リードα 第24章 応用問題423【高校物理】",
-        "score": 0.06
-      },
-      {
-        "id": "la-26-ouyou-457",
-        "title": "LR回路のスイッチ開閉時の電流を求める｜リードα 第26章 応用問題457【高校物理】",
-        "score": 0.051
       }
     ],
     "topScore": 0.068,
@@ -4831,104 +4899,40 @@
     "num": 147,
     "field": "原子",
     "title": "質量分析器",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-464",
-      "la-27-ouyou-474",
-      "la-27-kihonmondai-467",
-      "la-27-kihonmondai-461"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-464",
-        "title": "周波数を2倍にしたときの電流変化を求める｜リードα 第27章 基本問題464【高校物理】",
-        "score": 0.015
-      },
-      {
-        "id": "la-27-ouyou-474",
-        "title": "LC振動とばね振動の対応を空所補充で整理する｜リードα 第27章 応用問題474【高校物理】",
-        "score": 0.014
-      },
-      {
-        "id": "la-27-kihonmondai-467",
-        "title": "RC直列回路の静電容量を実測電流から求める｜リードα 第27章 基本問題467【高校物理】",
-        "score": 0.014
-      },
-      {
-        "id": "la-27-kihonmondai-461",
-        "title": "回転するコイルの空所補充で誘導起電力を求める｜リードα 第27章 基本問題461【高校物理】",
-        "score": 0.014
-      }
-    ],
-    "topScore": 0.015,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "148": {
     "num": 148,
     "field": "原子",
     "title": "電子の比電荷の測定",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-ouyou-474",
-      "la-27-kihonmondai-461"
-    ],
-    "matches": [
-      {
-        "id": "la-27-ouyou-474",
-        "title": "LC振動とばね振動の対応を空所補充で整理する｜リードα 第27章 応用問題474【高校物理】",
-        "score": 0.015
-      },
-      {
-        "id": "la-27-kihonmondai-461",
-        "title": "回転するコイルの空所補充で誘導起電力を求める｜リードα 第27章 基本問題461【高校物理】",
-        "score": 0.015
-      }
-    ],
-    "topScore": 0.015,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "149": {
     "num": 149,
     "field": "原子",
     "title": "ミリカンの実験",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-469"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-469",
-        "title": "LC回路の電圧グラフから電気容量と最大電流を求める｜リードα 第27章 基本問題469【高校物理】",
-        "score": 0.044
-      }
-    ],
-    "topScore": 0.044,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "150": {
     "num": 150,
     "field": "原子",
     "title": "光電効果",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-464"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-464",
-        "title": "周波数を2倍にしたときの電流変化を求める｜リードα 第27章 基本問題464【高校物理】",
-        "score": 0.032
-      }
-    ],
-    "topScore": 0.032,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "151": {
@@ -4945,102 +4949,30 @@
     "num": 152,
     "field": "原子",
     "title": "コンプトン効果",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-463",
-      "la-27-kihonrei-93",
-      "la-27-kihonmondai-465",
-      "la-27-kihonmondai-461"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-463",
-        "title": "変圧器の一次二次の電圧と電流を求める｜リードα 第27章 基本問題463【高校物理】",
-        "score": 0.018
-      },
-      {
-        "id": "la-27-kihonrei-93",
-        "title": "電気振動回路の振動電流と電磁波の波長を求める｜リードα 第27章 基本例題93【高校物理】",
-        "score": 0.017
-      },
-      {
-        "id": "la-27-kihonmondai-465",
-        "title": "抵抗・コイル・コンデンサーの消費電力を求める｜リードα 第27章 基本問題465【高校物理】",
-        "score": 0.017
-      },
-      {
-        "id": "la-27-kihonmondai-461",
-        "title": "回転するコイルの空所補充で誘導起電力を求める｜リードα 第27章 基本問題461【高校物理】",
-        "score": 0.016
-      }
-    ],
-    "topScore": 0.018,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "153": {
     "num": 153,
     "field": "原子",
     "title": "ブラッグ反射と金属からの光の発生",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-467",
-      "la-27-kihonrei-91",
-      "la-27-kihonmondai-469"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-467",
-        "title": "RC直列回路の静電容量を実測電流から求める｜リードα 第27章 基本問題467【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-kihonrei-91",
-        "title": "コイルの電圧電流グラフからリアクタンスを求める｜リードα 第27章 基本例題91【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-kihonmondai-469",
-        "title": "LC回路の電圧グラフから電気容量と最大電流を求める｜リードα 第27章 基本問題469【高校物理】",
-        "score": 0.015
-      }
-    ],
-    "topScore": 0.016,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "154": {
     "num": 154,
     "field": "原子",
     "title": "水素原子モデル",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-467",
-      "la-27-kihonrei-91",
-      "la-27-kihonmondai-469"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-467",
-        "title": "RC直列回路の静電容量を実測電流から求める｜リードα 第27章 基本問題467【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-kihonrei-91",
-        "title": "コイルの電圧電流グラフからリアクタンスを求める｜リードα 第27章 基本例題91【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-kihonmondai-469",
-        "title": "LC回路の電圧グラフから電気容量と最大電流を求める｜リードα 第27章 基本問題469【高校物理】",
-        "score": 0.015
-      }
-    ],
-    "topScore": 0.016,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "155": {
@@ -5057,82 +4989,20 @@
     "num": 156,
     "field": "原子",
     "title": "核反応で生じるエネルギー",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-462",
-      "la-27-ouyou-473",
-      "la-27-kihonrei-91",
-      "la-27-kihonmondai-469"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-462",
-        "title": "ダイオード回路の整流前後の電位変化を求める｜リードα 第27章 基本問題462【高校物理】",
-        "score": 0.086
-      },
-      {
-        "id": "la-27-ouyou-473",
-        "title": "LC回路のスイッチ切替後の振動電流を求める｜リードα 第27章 応用問題473【高校物理】",
-        "score": 0.067
-      },
-      {
-        "id": "la-27-kihonrei-91",
-        "title": "コイルの電圧電流グラフからリアクタンスを求める｜リードα 第27章 基本例題91【高校物理】",
-        "score": 0.066
-      },
-      {
-        "id": "la-27-kihonmondai-469",
-        "title": "LC回路の電圧グラフから電気容量と最大電流を求める｜リードα 第27章 基本問題469【高校物理】",
-        "score": 0.062
-      }
-    ],
-    "topScore": 0.086,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "157": {
     "num": 157,
     "field": "原子",
     "title": "中性子による核反応",
-    "leadChapters": [
-      27
-    ],
-    "leadProblems": [
-      "la-27-kihonmondai-464",
-      "la-27-ouyou-474",
-      "la-27-ouyou-473",
-      "la-27-ouyou-472",
-      "la-27-ouyou-471"
-    ],
-    "matches": [
-      {
-        "id": "la-27-kihonmondai-464",
-        "title": "周波数を2倍にしたときの電流変化を求める｜リードα 第27章 基本問題464【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-ouyou-474",
-        "title": "LC振動とばね振動の対応を空所補充で整理する｜リードα 第27章 応用問題474【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-ouyou-473",
-        "title": "LC回路のスイッチ切替後の振動電流を求める｜リードα 第27章 応用問題473【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-ouyou-472",
-        "title": "RLC並列回路で電流が最小になる周波数を求める｜リードα 第27章 応用問題472【高校物理】",
-        "score": 0.016
-      },
-      {
-        "id": "la-27-ouyou-471",
-        "title": "RLC直列回路の実効値電流と共振周波数を求める｜リードα 第27章 応用問題471【高校物理】",
-        "score": 0.016
-      }
-    ],
-    "topScore": 0.016,
+    "leadChapters": [],
+    "leadProblems": [],
+    "matches": [],
+    "topScore": 0.0,
     "confidence": "低(要確認)"
   },
   "158": {
