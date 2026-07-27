@@ -52,6 +52,13 @@ export function mountSettings(container, ctx) {
           </div>
         </div>
       </section>
+
+      <section class="card">
+        <h2 class="card-title">このアプリについて</h2>
+        <div class="button-row">
+          <a href="mission.html" class="btn-secondary">このアプリについて見る</a>
+        </div>
+      </section>
     `;
 
     container.querySelectorAll("[data-grade]").forEach((btn) => {

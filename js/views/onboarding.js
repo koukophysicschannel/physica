@@ -163,6 +163,7 @@ export function mountOnboarding(container, ctx) {
         ${dots()}
         <div class="onboarding-title">準備ができました</div>
         <p class="onboarding-text">「問題」タブから問題をタップすると、点数が加算されます。</p>
+        <p class="onboarding-text">間違えてタップしたら、長押しで取り消せます。</p>
         <button type="button" class="btn-primary onboarding-main-btn" id="ob-finish">問題リストを見る</button>
       </div>
     `;

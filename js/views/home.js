@@ -80,7 +80,6 @@ export function mountHome(container, ctx) {
     <section class="card home-hero">
       <div class="physica-label">PHYSICA値</div>
       <div class="physica-value" id="physica-value">0.0000</div>
-      <div class="expected-score" id="expected-score">予想得点(全範囲) --点</div>
     </section>
 
     <section class="card rank-card">
@@ -100,7 +99,6 @@ export function mountHome(container, ctx) {
   `;
 
   const physicaValueEl = container.querySelector("#physica-value");
-  const expectedScoreEl = container.querySelector("#expected-score");
   const rankCurrentEl = container.querySelector("#rank-current");
   const rankBarFillEl = container.querySelector("#rank-bar-fill");
   const rankNextEl = container.querySelector("#rank-next");
@@ -113,7 +111,6 @@ export function mountHome(container, ctx) {
     const snap = computeSnapshot(data, history, Date.now());
 
     physicaValueEl.textContent = formatFixed(snap.totalHeld, data.config.displayDecimals);
-    expectedScoreEl.textContent = `予想得点(全範囲) ${Math.round(snap.overallExpected)}点`;
 
     const { rankInfo } = snap;
     rankCurrentEl.textContent = rankInfo.current
@@ -169,7 +166,7 @@ export function mountHome(container, ctx) {
       : `<p class="settings-desc goal-empty">まだ目標がありません。「目標」タブから追加できます。</p>`;
 
     goalsHolder.querySelectorAll(".tile-grid[data-goal-id]").forEach((grid) => {
-      attachTileHandlers(grid, { getHistory, onChange: renderGoals });
+      attachTileHandlers(grid, { getHistory, onChange: renderGoals, config: data.config });
     });
   }
 

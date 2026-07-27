@@ -1,8 +1,9 @@
 // Shared tile rendering + tap/long-press handling, used by both the problem
 // list view and the home screen's "today's problems" package nomination list.
 
-import { lastTapRetention } from "./scoring.js";
+import { lastTapRetention, hasTappedToday } from "./scoring.js";
 import { addTap, undoLastTap } from "./storage.js";
+import { showToast } from "./toast.js";
 
 const LONG_PRESS_MS = 550;
 
@@ -53,7 +54,7 @@ export function tileHtml(entry, now, config, label) {
 // therefore only mutates storage and flashes a class on the still-attached
 // tile; the actual re-render is deferred to pointerup, after the gesture has
 // fully ended.
-export function attachTileHandlers(container, { getHistory, onChange }) {
+export function attachTileHandlers(container, { getHistory, onChange, config }) {
   container.querySelectorAll(".tile").forEach((tile) => {
     const id = tile.dataset.id;
     let pressTimer = null;
@@ -83,6 +84,14 @@ export function attachTileHandlers(container, { getHistory, onChange }) {
         return;
       }
       const history = getHistory();
+      if (config?.dailyLimit && hasTappedToday(history[id], Date.now())) {
+        tile.classList.remove("tile-blocked-shake");
+        // force a reflow so the animation can be retriggered on back-to-back blocked taps
+        void tile.offsetWidth;
+        tile.classList.add("tile-blocked-shake");
+        showToast("今日はもう解きました。また明日");
+        return;
+      }
       addTap(history, id);
       tile.classList.add("tile-pop");
       onChange();

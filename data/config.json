@@ -1,6 +1,7 @@
 {
   "edition": "プレ版",
   "subject": "物理",
+  "dailyLimit": true,
   "decay": { "tau": 7, "floor": 0.3 },
   "conversion": { "k": 1.7, "cap": 100 },
   "points": {

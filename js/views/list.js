@@ -96,7 +96,7 @@ export function mountList(container, ctx) {
         ? renderLeadalpha(data, history, now, openSet)
         : renderJuyomon(data, history, now, openSet);
     attachDetailsHandlers(openSet);
-    attachTileHandlers(contentEl, { getHistory, onChange: renderTiles });
+    attachTileHandlers(contentEl, { getHistory, onChange: renderTiles, config: data.config });
   }
 
   function attachDetailsHandlers(openSet) {

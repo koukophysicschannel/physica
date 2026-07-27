@@ -108,6 +108,19 @@ export function lastTapRetention(taps, now, decay) {
   return retention(tDays, decay.tau, decay.floor);
 }
 
+// 同日タップ制限用: 直近タップが「今日」(端末ローカル時刻の0時切り替わり)かどうか。
+// 長押し取り消しで直近タップが消えれば、残る最新タップは別日になるため自然に再タップ可能になる。
+export function hasTappedToday(taps, now) {
+  if (!taps || taps.length === 0) return false;
+  const last = new Date(Math.max(...taps));
+  const today = new Date(now);
+  return (
+    last.getFullYear() === today.getFullYear() &&
+    last.getMonth() === today.getMonth() &&
+    last.getDate() === today.getDate()
+  );
+}
+
 // 目標(goal)のscopeを実問題配列に解決する。
 // chapters系はリードα(章番号を持つのはリードαのみ)、field系はリードα・重問両方から集める。
 export function resolveScope(scope, problems) {

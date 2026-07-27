@@ -28,6 +28,7 @@ function pointsTableSection(config) {
         <tbody>${rows}</tbody>
       </table>
       <p>同じ問題を複数回タップすると、そのたびに満額が加算される。</p>
+      ${config.dailyLimit ? "<p>同じ問題は1日1回まで加点される。翌日になると再度加点できる。</p>" : ""}
     </section>
   `;
 }
