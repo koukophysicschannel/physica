@@ -15,9 +15,10 @@
   2. **[修正済みバグ]** レーダーチャートの軸ラベル(例:「原子」→「子」)がSVG描画域外にはみ出して文字が欠けていた。`js/radar.js` の座標系(SIZE/MAX_R/ラベル半径)を拡大し、左右軸の片側伸長ラベルでも収まるよう修正。
   - その他の検証項目(タップ加点即時反映・4桁減衰・定期考査の範囲満点検算・375px幅でのレイアウト崩れなし)はすべて問題なし。
 - **GitHub Pagesへのデプロイ**:
-  - リポジトリ: https://github.com/masahiroshimizu-a11y/physica (公開, mainブランチ)
+  - リポジトリ: https://github.com/koukophysicschannel/physica (公開, mainブランチ)
+    (2026-07-27にmasahiroshimizu-a11y/physicaから移管。移管に伴いPages設定・URLも引き継がれた)
   - Pages有効化済み(source: main branch, path `/`, legacy build)
-  - 本番URL: **https://masahiroshimizu-a11y.github.io/physica/** (200応答を確認済み)
+  - 本番URL: **https://koukophysicschannel.github.io/physica/** (v2デプロイ後も全アセット200・SW登録・オフライン起動を再確認済み)
   - サブパス配信を見越し、`manifest.json` の `start_url`/`scope`、`sw.js` のキャッシュ対象パス、`js/data.js` のfetchパス等はすべて相対パス(絶対パス `/...` を使用している箇所ゼロ)であることをリポジトリ全体grepで確認済み。
 
 ## 次のタスク(このメッセージ処理中に中断)
@@ -32,7 +33,8 @@
 
 - **ローカル環境にはPlaywright-coreをscratchpad配下(`/private/tmp/.../scratchpad/pw/`)にのみ npm install済み**。プロジェクト本体には依存関係を一切追加していない(ビルド工程なしという仕様を維持)。
 - **ローカル開発サーバー**: `python3 -m http.server 8934` をプロジェクトルートで起動して動作確認していた。ESモジュール(`<script type="module">`)を使っているため `file://` では動作しない(CORSで弾かれる)。ローカルでの再検証には必ずHTTPサーバー経由でアクセスすること。
-- **git設定**: グローバルの `user.name`/`user.email` が未設定だったため、このリポジトリのローカル設定のみ `masahiroshimizu-a11y` / `301634234+masahiroshimizu-a11y@users.noreply.github.com` を設定済み(global設定には触れていない)。
-- **sw.jsのキャッシュバージョン**: `CACHE_NAME = "physica-v1"` をハードコードしている。今後 `PRECACHE_URLS` に含まれるファイルの中身を更新した場合は、このバージョン文字列をインクリメントしないと古いキャッシュが配信され続ける点に注意。
+- **git設定**: グローバルの `user.name`/`user.email` が未設定だったため、このリポジトリのローカル設定のみ `masahiroshimizu-a11y` / `301634234+masahiroshimizu-a11y@users.noreply.github.com` を設定していた(global設定には触れていない)。
+  2026-07-27にリポジトリを `koukophysicschannel` アカウントへ移管したが、**ローカルのuser.name/user.emailは更新していない**(旧アカウント名義のまま)。commit著者表示を新アカウントに揃えたい場合は別途 `git config --local user.name/user.email` の変更が必要。
+- **sw.jsのキャッシュバージョン**: v2で `CACHE_NAME = "physica-v2"` に更新済み。今後 `PRECACHE_URLS` に含まれるファイルの中身を更新した場合は、このバージョン文字列をインクリメントしないと古いキャッシュが配信され続ける点に注意。
 - **タイムゾーンに関する既知の注意**: UI検品中、`daysUntil()` 自体は正しく実装されているが、**テストスクリプト側**で `toISOString().slice(0,10)` を使って試験日を生成すると、UTC変換により実機のローカル日付とズレるケースを確認した(実際の `<input type="date">` はローカル日付を返すため本番では問題なし)。今後同様のテストを書く際は要注意。
 - **データの既知の癖**: リードαの章別満点は仕様書と異なり合計1,288点(3, 4, 6章がそれぞれ+1)。これは重複データではなく実データに基づく正しい値として扱っている(詳細は上記および `PHYSICA-spec.md` 参照)。
