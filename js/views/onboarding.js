@@ -1,6 +1,7 @@
 import { saveProfile, addGoal, markOnboardingDone } from "../storage.js";
 import { getDeferredPrompt, clearDeferredPrompt, isStandalone, isIOS, isAndroid } from "../installPrompt.js";
 import { GRADE_ORDER, GRADE_LABELS } from "../grades.js";
+import { universityOptionsHtml } from "../ranks.js";
 
 function shareIconSVG() {
   return `
@@ -128,31 +129,29 @@ export function mountOnboarding(container, ctx) {
   }
 
   function renderRank() {
-    const ranks = data.config.ranks;
     container.innerHTML = `
       <div class="onboarding-screen">
         ${dots()}
-        <div class="onboarding-title">志望ランクを選んでください</div>
+        <div class="onboarding-title">志望大学を選んでください</div>
         <p class="onboarding-text">選ぶと、目標として登録されます。</p>
-        <div class="type-picker onboarding-choices">
-          ${ranks.map((r) => `<button type="button" class="type-picker-btn" data-rank="${r.label}">${r.label}</button>`).join("")}
-        </div>
+        <select id="rank-select" class="onboarding-choices">
+          ${universityOptionsHtml(data.config.ranks)}
+        </select>
+        <button type="button" class="btn-primary onboarding-main-btn" id="ob-next">決定</button>
         <button type="button" class="onboarding-skip" id="ob-skip">スキップ</button>
       </div>
     `;
-    container.querySelectorAll("[data-rank]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const rankLabel = btn.dataset.rank;
-        addGoal({
-          id: `goal-${Date.now()}`,
-          type: "rank",
-          label: `志望: ${rankLabel}`,
-          deadline: null,
-          createdAt: Date.now(),
-          target: { rankLabel },
-        });
-        advance();
+    container.querySelector("#ob-next").addEventListener("click", () => {
+      const rankLabel = container.querySelector("#rank-select").value;
+      addGoal({
+        id: `goal-${Date.now()}`,
+        type: "rank",
+        label: `志望: ${rankLabel}`,
+        deadline: null,
+        createdAt: Date.now(),
+        target: { rankLabel },
       });
+      advance();
     });
     container.querySelector("#ob-skip").addEventListener("click", advance);
   }

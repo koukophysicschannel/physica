@@ -9,6 +9,7 @@ import {
   rawPointsInWindow,
   packageProgress,
 } from "./scoring.js";
+import { findTierForUniversity } from "./ranks.js";
 
 // Builds every derived number the home screen needs, for a single instant `now`.
 // Nothing here is cached/stored — it is recomputed from tap history each call
@@ -68,11 +69,12 @@ export function computeGoalSnapshot(goal, data, overallSnap, history, now) {
       return { held, max, finish, fieldFinish, fieldCoverage };
     }
     case "rank": {
-      const targetRank = config.ranks.find((r) => r.label === goal.target.rankLabel) ?? null;
-      const { effectiveTotal, weakestField } = overallSnap.rankInfo;
-      const remaining = targetRank ? Math.max(targetRank.score - effectiveTotal, 0) : 0;
-      const achieved = targetRank ? effectiveTotal >= targetRank.score : false;
-      return { targetRank, effectiveTotal, weakestField, remaining, achieved };
+      const university = goal.target.rankLabel;
+      const targetTier = findTierForUniversity(config.ranks, university);
+      const { effectiveTotal, weakestField, current } = overallSnap.rankInfo;
+      const remaining = targetTier ? Math.max(targetTier.score - effectiveTotal, 0) : 0;
+      const achieved = targetTier ? effectiveTotal >= targetTier.score : false;
+      return { university, targetTier, currentTier: current, effectiveTotal, weakestField, remaining, achieved };
     }
     case "period": {
       const scope = resolveScope(goal.target.scope, problems);

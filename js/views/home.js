@@ -33,12 +33,12 @@ function mocktestCardBody(goal, gs, config, now) {
   `;
 }
 
-function rankCardBody(goal, gs, overallSnap) {
-  const currentLabel = overallSnap.rankInfo.current ? overallSnap.rankInfo.current.label : "ランク圏外";
-  if (!gs.targetRank) return `<div class="goal-score">志望ランクの設定が見つかりません</div>`;
+function rankCardBody(goal, gs) {
+  if (!gs.targetTier) return `<div class="goal-score">志望大学の設定が見つかりません</div>`;
+  const currentLabel = gs.currentTier ? `Tier${gs.currentTier.tier}` : "圏外";
+  const progressLabel = gs.achieved ? "到達済み" : `まであと ${Math.round(gs.remaining)}点`;
   return `
-    <div class="goal-score">現在ランク: ${currentLabel}</div>
-    <div class="goal-score">${gs.achieved ? `${gs.targetRank.label} 到達済み` : `${gs.targetRank.label}まであと ${Math.round(gs.remaining)}点`}</div>
+    <div class="goal-score">現在${currentLabel} → ${gs.university} ${progressLabel}</div>
     ${gs.weakestField ? `<div class="goal-countdown">弱点分野: ${gs.weakestField}</div>` : ""}
   `;
 }
@@ -123,16 +123,16 @@ export function mountHome(container, ctx) {
 
     const { rankInfo } = snap;
     rankCurrentEl.textContent = rankInfo.current
-      ? `現在ランク: ${rankInfo.current.label}`
-      : "現在ランク: ランク圏外";
+      ? `現在Tier${rankInfo.current.tier}`
+      : "現在Tier: 圏外";
     if (rankInfo.next) {
       const span = rankInfo.next.score - (rankInfo.current ? rankInfo.current.score : 0);
       const progressed = span > 0 ? (span - rankInfo.remainingToNext) / span : 0;
       rankBarFillEl.style.width = `${Math.max(0, Math.min(100, progressed * 100))}%`;
-      rankNextEl.textContent = `次: ${rankInfo.next.label} まであと ${Math.max(0, Math.round(rankInfo.remainingToNext))}点`;
+      rankNextEl.textContent = `次: Tier${rankInfo.next.tier} まであと ${Math.max(0, Math.round(rankInfo.remainingToNext))}点`;
     } else {
       rankBarFillEl.style.width = "100%";
-      rankNextEl.textContent = "最高ランク到達";
+      rankNextEl.textContent = "最高Tier到達";
     }
     if (rankInfo.weakestField) {
       rankNextEl.textContent += `(弱点: ${rankInfo.weakestField})`;
@@ -162,7 +162,7 @@ export function mountHome(container, ctx) {
             let body = "";
             if (goal.type === "exam") body = examCardBody(goal, gs, now);
             else if (goal.type === "mocktest") body = mocktestCardBody(goal, gs, data.config, now);
-            else if (goal.type === "rank") body = rankCardBody(goal, gs, overallSnap);
+            else if (goal.type === "rank") body = rankCardBody(goal, gs);
             else if (goal.type === "period") body = periodCardBody(goal, gs, data, history, now);
             return `
               <section class="card goal-card">

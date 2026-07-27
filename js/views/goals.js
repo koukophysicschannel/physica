@@ -3,6 +3,7 @@ import { resolveScope } from "../scoring.js";
 import { deadlineSortKey, todayStr, addDays } from "../format.js";
 import { GRADE_ORDER, GRADE_LABELS, matchesGrade } from "../grades.js";
 import { attachScrollTopButton } from "../scrollTop.js";
+import { universityOptionsHtml } from "../ranks.js";
 
 const TYPE_LABELS = { exam: "定期考査", mocktest: "模試", rank: "志望ランク", period: "期間目標" };
 
@@ -276,10 +277,10 @@ export function mountGoals(container, ctx) {
   function renderFormRank() {
     container.innerHTML = `
       <section class="card">
-        <h2 class="card-title">志望ランクの目標を追加</h2>
-        <label class="field-label" for="rank-select">志望ランク</label>
+        <h2 class="card-title">志望大学の目標を追加</h2>
+        <label class="field-label" for="rank-select">志望大学</label>
         <select id="rank-select">
-          ${data.config.ranks.map((r) => `<option value="${r.label}">${r.label}</option>`).join("")}
+          ${universityOptionsHtml(data.config.ranks)}
         </select>
         <div class="button-row">
           <button type="button" class="btn-primary" id="save-btn">保存</button>

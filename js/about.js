@@ -164,19 +164,25 @@ function expectedScoreSection(config) {
 }
 
 function rankSection(config) {
-  const sorted = [...config.ranks].sort((a, b) => b.score - a.score);
-  const rows = sorted.map((r) => `<tr><td>${r.label}</td><td class="num">${r.score}点</td></tr>`).join("");
+  const sorted = [...config.ranks].sort((a, b) => a.tier - b.tier);
+  const rows = sorted
+    .map(
+      (r) =>
+        `<tr><td>Tier${r.tier}</td><td class="num">${r.score}点</td><td>${r.universities.join("・")}</td></tr>`
+    )
+    .join("");
   return `
     <section class="card about-section">
-      <h2 class="card-title">ランクの判定条件</h2>
-      <p>現在ランクは、5つの分野(${config.fields.join("・")})それぞれの「保持点 ÷ 満点」の比のうち、最も低い比率をもとに判定される。</p>
+      <h2 class="card-title">Tier(志望大学)の判定条件</h2>
+      <p>現在Tierは、5つの分野(${config.fields.join("・")})それぞれの「保持点 ÷ 満点」の比のうち、最も低い比率をもとに判定される。</p>
       <p>最も低い比率を全範囲満点に掛けた値が、判定に使う実効値になる。</p>
-      <p>実効値がランクの基準点以上になると、そのランクに到達したと判定される。</p>
-      <p>5つの分野のうち1つでも基準に届いていない分野があると、他の分野が基準を超えていても、そのランクには到達しない。</p>
+      <p>実効値がTierの基準点以上になると、そのTierに到達したと判定される。</p>
+      <p>5つの分野のうち1つでも基準に届いていない分野があると、他の分野が基準を超えていても、そのTierには到達しない。</p>
       <table class="about-table">
-        <thead><tr><th>ランク</th><th>基準点</th></tr></thead>
+        <thead><tr><th>Tier</th><th>基準点</th><th>大学</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
+      <p>この序列は物理の入試問題の難度に基づく管理者の査定であり、大学の総合難易度ではない。</p>
     </section>
   `;
 }

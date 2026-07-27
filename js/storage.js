@@ -104,6 +104,34 @@ export function migrateLegacyExamSettings() {
   }
 }
 
+// v2の旧4ランク制(label+score)から8Tier制(tier+score+universities)への
+// 一度きりの移行。既存のrank目標が指していたlabelはもう存在しないので、
+// スコアが最も近い新Tierの先頭大学へ差し替える。新形式のrankLabel(実在する
+// 大学名)を指している目標はそのまま素通りするので、何度呼んでも安全。
+const LEGACY_RANK_NEAREST_TIER = {
+  "東大・京大": 2,
+  "早慶・旧帝": 4,
+  "MARCH・地方国立": 6,
+  "日東駒専・地方私立": 8,
+};
+
+export function migrateLegacyRankGoals(ranksConfig) {
+  const allUniversities = new Set(ranksConfig.flatMap((r) => r.universities));
+  const goals = loadGoals();
+  let changed = false;
+
+  const migrated = goals.map((g) => {
+    if (g.type !== "rank" || allUniversities.has(g.target?.rankLabel)) return g;
+    const tierNum = LEGACY_RANK_NEAREST_TIER[g.target?.rankLabel];
+    const tier = ranksConfig.find((r) => r.tier === tierNum) ?? ranksConfig[ranksConfig.length - 1];
+    const university = tier.universities[0];
+    changed = true;
+    return { ...g, label: `志望: ${university}`, target: { rankLabel: university } };
+  });
+
+  if (changed) saveGoals(migrated);
+}
+
 // この端末をまたがずに識別するためだけの匿名ID。個人情報は含まない。
 // エクスポートファイルに同梱し、複数の生徒から集めたバックアップを区別できるようにする。
 export function getOrCreateAnonId() {

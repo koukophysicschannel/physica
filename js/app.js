@@ -1,6 +1,13 @@
 import "./installPrompt.js"; // registers the beforeinstallprompt listener as early as possible
 import { loadData } from "./data.js";
-import { loadHistory, loadGoals, loadProfile, migrateLegacyExamSettings, isOnboardingDone } from "./storage.js";
+import {
+  loadHistory,
+  loadGoals,
+  loadProfile,
+  migrateLegacyExamSettings,
+  migrateLegacyRankGoals,
+  isOnboardingDone,
+} from "./storage.js";
 import { mountHome } from "./views/home.js";
 import { mountList } from "./views/list.js";
 import { mountGoals } from "./views/goals.js";
@@ -65,6 +72,7 @@ async function render(data) {
 async function main() {
   migrateLegacyExamSettings();
   const data = await loadData();
+  migrateLegacyRankGoals(data.config.ranks);
   const editionBadge = document.getElementById("edition-badge");
   if (editionBadge && data.config.edition) editionBadge.textContent = data.config.edition;
   window.addEventListener("hashchange", () => render(data));
