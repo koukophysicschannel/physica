@@ -32,9 +32,16 @@ function renderLeadalpha(data, history, now, openSet) {
           return tileHtml(entry, now, data.config, problemShortLabel(p));
         })
         .join("");
+      const playlistUrl = data.playlists?.[String(chapter)];
+      const playlistLink = playlistUrl
+        ? `<a class="playlist-link" href="${playlistUrl}" target="_blank" rel="noopener" aria-label="第${chapter}章の再生リストを開く">▶</a>`
+        : "";
       return `
         <details class="chapter-group" data-key="${chapter}" ${openSet.has(String(chapter)) ? "open" : ""}>
-          <summary>第${chapter}章 <span class="chapter-meta">${held.toFixed(1)} / ${max}</span></summary>
+          <summary>
+            <span class="chapter-summary-text">第${chapter}章 <span class="chapter-meta">${held.toFixed(1)} / ${max}</span></span>
+            ${playlistLink}
+          </summary>
           <div class="tile-grid">${tiles}</div>
         </details>
       `;
@@ -96,6 +103,7 @@ export function mountList(container, ctx) {
         ? renderLeadalpha(data, history, now, openSet)
         : renderJuyomon(data, history, now, openSet);
     attachDetailsHandlers(openSet);
+    attachPlaylistLinkHandlers();
     attachTileHandlers(contentEl, { getHistory, onChange: renderTiles, config: data.config });
   }
 
@@ -106,6 +114,16 @@ export function mountList(container, ctx) {
         if (details.open) openSet.add(key);
         else openSet.delete(key);
       });
+    });
+  }
+
+  // <summary> toggles its <details> on any click within it, including nested
+  // elements. Stop propagation here so tapping the playlist icon opens the
+  // link without also collapsing/expanding the chapter.
+  function attachPlaylistLinkHandlers() {
+    contentEl.querySelectorAll(".playlist-link").forEach((link) => {
+      link.addEventListener("click", (event) => event.stopPropagation());
+      link.addEventListener("pointerdown", (event) => event.stopPropagation());
     });
   }
 
