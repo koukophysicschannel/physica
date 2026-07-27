@@ -35,6 +35,9 @@ body {
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .topbar-title {
@@ -42,6 +45,19 @@ body {
   font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--text-muted);
+}
+
+.edition-badge:empty {
+  display: none;
+}
+
+.edition-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green-dark);
+  border: 1px solid var(--green-dark);
+  border-radius: 999px;
+  padding: 2px 8px;
 }
 
 #view {
@@ -471,6 +487,15 @@ body {
 
 .type-picker-btn.active span {
   color: #eaf4ea;
+}
+
+.grade-grid {
+  gap: 8px;
+}
+
+.grade-grid .type-picker-btn {
+  padding: 12px 8px;
+  font-size: 13px;
 }
 
 .goal-list-item {

@@ -6,6 +6,7 @@ const EXAM_KEY = "physica_exam_settings_v1"; // legacy v1 key, migrated then unu
 const GOALS_KEY = "physica_goals_v1";
 const PROFILE_KEY = "physica_profile_v1";
 const ONBOARDING_KEY = "physica_onboarding_done_v1";
+const ANON_ID_KEY = "physica_anon_id_v1";
 
 export function loadHistory() {
   try {
@@ -103,10 +104,23 @@ export function migrateLegacyExamSettings() {
   }
 }
 
-export function exportData() {
+// この端末をまたがずに識別するためだけの匿名ID。個人情報は含まない。
+// エクスポートファイルに同梱し、複数の生徒から集めたバックアップを区別できるようにする。
+export function getOrCreateAnonId() {
+  let id = localStorage.getItem(ANON_ID_KEY);
+  if (!id) {
+    id = crypto.randomUUID ? crypto.randomUUID() : `anon-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem(ANON_ID_KEY, id);
+  }
+  return id;
+}
+
+export function exportData(config) {
   return {
     version: 2,
     exportedAt: new Date().toISOString(),
+    anonId: getOrCreateAnonId(),
+    config,
     history: loadHistory(),
     goals: loadGoals(),
     profile: loadProfile(),

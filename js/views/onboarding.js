@@ -1,5 +1,6 @@
 import { saveProfile, addGoal, markOnboardingDone } from "../storage.js";
 import { getDeferredPrompt, clearDeferredPrompt, isStandalone, isIOS, isAndroid } from "../installPrompt.js";
+import { GRADE_ORDER, GRADE_LABELS } from "../grades.js";
 
 function shareIconSVG() {
   return `
@@ -111,10 +112,8 @@ export function mountOnboarding(container, ctx) {
         ${dots()}
         <div class="onboarding-title">学年を選んでください</div>
         <p class="onboarding-text">模試の候補を絞り込むために使われます。</p>
-        <div class="type-picker onboarding-choices">
-          <button type="button" class="type-picker-btn" data-grade="1">高校1年</button>
-          <button type="button" class="type-picker-btn" data-grade="2">高校2年</button>
-          <button type="button" class="type-picker-btn" data-grade="3">高校3年</button>
+        <div class="type-picker onboarding-choices grade-grid">
+          ${GRADE_ORDER.map((g) => `<button type="button" class="type-picker-btn" data-grade="${g}">${GRADE_LABELS[g]}</button>`).join("")}
         </div>
         <button type="button" class="onboarding-skip" id="ob-skip">スキップ</button>
       </div>

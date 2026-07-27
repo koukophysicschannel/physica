@@ -44,9 +44,15 @@ async function render(data) {
     currentCleanup = null;
   }
   let route = currentRouteName();
-  if (!isOnboardingDone() && route !== "onboarding") {
+  const done = isOnboardingDone();
+  if (!done && route !== "onboarding") {
     location.hash = "#/onboarding";
     return; // the resulting hashchange re-invokes render() with route === "onboarding"
+  }
+  if (done && route === "onboarding") {
+    // guards against a stale/bookmarked #/onboarding hash once it's already done
+    location.hash = `#/${DEFAULT_ROUTE}`;
+    return;
   }
   document.body.classList.toggle("onboarding-active", route === "onboarding");
   for (const link of navLinks) {
@@ -59,6 +65,8 @@ async function render(data) {
 async function main() {
   migrateLegacyExamSettings();
   const data = await loadData();
+  const editionBadge = document.getElementById("edition-badge");
+  if (editionBadge && data.config.edition) editionBadge.textContent = data.config.edition;
   window.addEventListener("hashchange", () => render(data));
   if (!isOnboardingDone()) {
     location.hash = "#/onboarding";

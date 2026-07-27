@@ -1,6 +1,7 @@
 import { addGoal, deleteGoal, loadProfile, saveProfile } from "../storage.js";
 import { resolveScope } from "../scoring.js";
 import { deadlineSortKey, todayStr, addDays } from "../format.js";
+import { GRADE_ORDER, GRADE_LABELS, matchesGrade } from "../grades.js";
 
 const TYPE_LABELS = { exam: "定期考査", mocktest: "模試", rank: "志望ランク", period: "期間目標" };
 
@@ -172,10 +173,8 @@ export function mountGoals(container, ctx) {
       <section class="card">
         <h2 class="card-title">学年を教えてください</h2>
         <p class="settings-desc">模試の対象学年を絞り込むため、最初の一度だけ確認します。</p>
-        <div class="type-picker">
-          <button type="button" class="type-picker-btn" data-grade="1">高校1年</button>
-          <button type="button" class="type-picker-btn" data-grade="2">高校2年</button>
-          <button type="button" class="type-picker-btn" data-grade="3">高校3年</button>
+        <div class="type-picker grade-grid">
+          ${GRADE_ORDER.map((g) => `<button type="button" class="type-picker-btn" data-grade="${g}">${GRADE_LABELS[g]}</button>`).join("")}
         </div>
         <div class="button-row">
           <button type="button" class="btn-secondary" id="cancel-btn">キャンセル</button>
@@ -194,7 +193,7 @@ export function mountGoals(container, ctx) {
   function renderFormMocktest() {
     const grade = loadProfile()?.grade;
     const candidates = data.exams.filter(
-      (e) => e.対象学年 === grade && e.科目.includes(data.config.subject)
+      (e) => matchesGrade(e.対象学年, grade) && e.科目.includes(data.config.subject)
     );
     const chapters = chaptersOf(data);
     const byChapter = maxByChapter(data);
@@ -204,7 +203,7 @@ export function mountGoals(container, ctx) {
       container.innerHTML = `
         <section class="card">
           <h2 class="card-title">模試の目標を追加</h2>
-          <p class="settings-desc">対象学年(高${grade})・物理を含む模試が exams.json に見つかりません。</p>
+          <p class="settings-desc">この学年で選べる模試はありません(定期考査・期間目標を使ってください)。</p>
           <div class="button-row">
             <button type="button" class="btn-secondary" id="cancel-btn">戻る</button>
           </div>
@@ -322,7 +321,7 @@ export function mountGoals(container, ctx) {
 
   function renderFormPeriodPackage() {
     const profile = loadProfile();
-    const candidates = data.packages.filter((pkg) => pkg.対象学年 == null || pkg.対象学年 === profile?.grade);
+    const candidates = data.packages.filter((pkg) => matchesGrade(pkg.対象学年, profile?.grade));
 
     container.innerHTML = `
       <section class="card">

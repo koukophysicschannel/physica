@@ -6,6 +6,15 @@ function pct(v) {
   return (v * 100).toFixed(1);
 }
 
+function editionSection(config) {
+  if (!config.edition) return "";
+  return `
+    <section class="card about-section">
+      <p>このアプリは現在「${config.edition}」として提供されている。</p>
+    </section>
+  `;
+}
+
 function pointsTableSection(config) {
   const rows = CATEGORY_ORDER.filter((k) => k in config.points)
     .map((k) => `<tr><td>${k}</td><td class="num">${config.points[k]}点</td></tr>`)
@@ -221,6 +230,7 @@ async function main() {
 
   const view = document.getElementById("about-view");
   view.innerHTML = [
+    editionSection(config),
     pointsTableSection(config),
     decaySection(config),
     tileColorSection(config),
