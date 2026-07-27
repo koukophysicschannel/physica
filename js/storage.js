@@ -5,6 +5,7 @@ const HISTORY_KEY = "physica_tap_history_v1";
 const EXAM_KEY = "physica_exam_settings_v1"; // legacy v1 key, migrated then unused
 const GOALS_KEY = "physica_goals_v1";
 const PROFILE_KEY = "physica_profile_v1";
+const ONBOARDING_KEY = "physica_onboarding_done_v1";
 
 export function loadHistory() {
   try {
@@ -134,4 +135,20 @@ export function resetAll() {
   localStorage.removeItem(GOALS_KEY);
   localStorage.removeItem(PROFILE_KEY);
   localStorage.removeItem(EXAM_KEY);
+  localStorage.removeItem(ONBOARDING_KEY);
+}
+
+// 初回起動ウィザードの完了フラグ。タップ履歴・目標・学年のいずれも保存されていない
+// 「未初期化」な状態かどうかは、このフラグの有無だけで判定する(何も選ばずスキップし
+// 続けた場合でもウィザードを一度きりにするため)。
+export function isOnboardingDone() {
+  return localStorage.getItem(ONBOARDING_KEY) === "1";
+}
+
+export function markOnboardingDone() {
+  localStorage.setItem(ONBOARDING_KEY, "1");
+}
+
+export function resetOnboarding() {
+  localStorage.removeItem(ONBOARDING_KEY);
 }

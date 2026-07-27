@@ -1,7 +1,15 @@
-import { exportData, importData, resetAll } from "../storage.js";
+import { exportData, importData, resetAll, resetOnboarding } from "../storage.js";
 
-export function mountSettings(container) {
+export function mountSettings(container, ctx) {
   container.innerHTML = `
+    <section class="card">
+      <h2 class="card-title">初回ウィザード</h2>
+      <p class="settings-desc">ようこそ画面・ホーム画面への追加案内・学年・志望ランクを選ぶ最初の案内を、もう一度表示します。</p>
+      <div class="button-row">
+        <button type="button" class="btn-secondary" id="redo-onboarding-btn">初回ウィザードをやり直す</button>
+      </div>
+    </section>
+
     <section class="card">
       <h2 class="card-title">データのエクスポート/インポート</h2>
       <p class="settings-desc">タップ履歴をJSONファイルとして保存・読込できます。機種変更やブラウザデータ消失に備えて、定期的にエクスポートしておくことをおすすめします。</p>
@@ -28,6 +36,11 @@ export function mountSettings(container) {
       </div>
     </section>
   `;
+
+  container.querySelector("#redo-onboarding-btn").addEventListener("click", () => {
+    resetOnboarding();
+    ctx.navigate("onboarding");
+  });
 
   container.querySelector("#export-btn").addEventListener("click", () => {
     const data = exportData();

@@ -1,15 +1,18 @@
+import "./installPrompt.js"; // registers the beforeinstallprompt listener as early as possible
 import { loadData } from "./data.js";
-import { loadHistory, loadGoals, loadProfile, migrateLegacyExamSettings } from "./storage.js";
+import { loadHistory, loadGoals, loadProfile, migrateLegacyExamSettings, isOnboardingDone } from "./storage.js";
 import { mountHome } from "./views/home.js";
 import { mountList } from "./views/list.js";
 import { mountGoals } from "./views/goals.js";
 import { mountSettings } from "./views/settings.js";
+import { mountOnboarding } from "./views/onboarding.js";
 
 const ROUTES = {
   home: mountHome,
   list: mountList,
   goals: mountGoals,
   settings: mountSettings,
+  onboarding: mountOnboarding,
 };
 const DEFAULT_ROUTE = "home";
 
@@ -40,7 +43,12 @@ async function render(data) {
     currentCleanup();
     currentCleanup = null;
   }
-  const route = currentRouteName();
+  let route = currentRouteName();
+  if (!isOnboardingDone() && route !== "onboarding") {
+    location.hash = "#/onboarding";
+    return; // the resulting hashchange re-invokes render() with route === "onboarding"
+  }
+  document.body.classList.toggle("onboarding-active", route === "onboarding");
   for (const link of navLinks) {
     link.classList.toggle("active", link.dataset.route === route);
   }
@@ -52,7 +60,11 @@ async function main() {
   migrateLegacyExamSettings();
   const data = await loadData();
   window.addEventListener("hashchange", () => render(data));
-  if (!location.hash) location.hash = `#/${DEFAULT_ROUTE}`;
+  if (!isOnboardingDone()) {
+    location.hash = "#/onboarding";
+  } else if (!location.hash) {
+    location.hash = `#/${DEFAULT_ROUTE}`;
+  }
   await render(data);
 
   if ("serviceWorker" in navigator) {
