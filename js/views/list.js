@@ -34,6 +34,11 @@ function renderJumpBar(tab, data) {
   return `<div class="chapter-jump-bar">${chips}</div>`;
 }
 
+function playlistLinkHtml(url, label) {
+  if (!url) return "";
+  return `<a class="playlist-link" href="${url}" target="_blank" rel="noopener" aria-label="${label}の再生リストを開く">▶</a>`;
+}
+
 function renderLeadalpha(data, history, now, openSet) {
   const heldMap = computeHeldByProblem(data.leadalpha, history, data.config, now);
   const chapters = [...new Set(data.leadalpha.map((p) => p.chapter))].sort((a, b) => a - b);
@@ -49,10 +54,7 @@ function renderLeadalpha(data, history, now, openSet) {
           return tileHtml(entry, now, data.config, problemShortLabel(p));
         })
         .join("");
-      const playlistUrl = data.playlists?.[String(chapter)];
-      const playlistLink = playlistUrl
-        ? `<a class="playlist-link" href="${playlistUrl}" target="_blank" rel="noopener" aria-label="第${chapter}章の再生リストを開く">▶</a>`
-        : "";
+      const playlistLink = playlistLinkHtml(data.playlists?.leadalpha?.[String(chapter)], `第${chapter}章`);
       return `
         <details class="chapter-group" data-key="${chapter}" ${openSet.has(String(chapter)) ? "open" : ""}>
           <summary>
@@ -81,9 +83,13 @@ function renderJuyomon(data, history, now, openSet) {
           return tileHtml(entry, now, data.config, problemShortLabel(p));
         })
         .join("");
+      const playlistLink = playlistLinkHtml(data.playlists?.juyomon?.[field], field);
       return `
         <details class="chapter-group" data-key="${field}" ${openSet.has(String(field)) ? "open" : ""}>
-          <summary>${field} <span class="chapter-meta">${held.toFixed(1)} / ${max}</span></summary>
+          <summary>
+            <span class="chapter-summary-text">${field} <span class="chapter-meta">${held.toFixed(1)} / ${max}</span></span>
+            ${playlistLink}
+          </summary>
           <div class="tile-grid">${tiles}</div>
         </details>
       `;

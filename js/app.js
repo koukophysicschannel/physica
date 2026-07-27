@@ -5,6 +5,7 @@ import {
   loadGoals,
   loadProfile,
   migrateLegacyExamSettings,
+  migrateRenamedUniversities,
   migrateLegacyRankGoals,
   isOnboardingDone,
 } from "./storage.js";
@@ -72,6 +73,7 @@ async function render(data) {
 async function main() {
   migrateLegacyExamSettings();
   const data = await loadData();
+  migrateRenamedUniversities();
   migrateLegacyRankGoals(data.config.ranks);
   const editionBadge = document.getElementById("edition-badge");
   if (editionBadge && data.config.edition) editionBadge.textContent = data.config.edition;

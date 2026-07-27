@@ -115,6 +115,67 @@ const LEGACY_RANK_NEAREST_TIER = {
   "日東駒専・地方私立": 8,
 };
 
+// 大学名の略称・旧称 → 正式名称の読み替え。ドロップダウンには正式名称しか
+// 出てこないが、旧バックアップの手動編集・インポートや今後の改称
+// (東京工業大学→東京科学大学など)に備えて、実在しない旧表記を見つけたら
+// 正式名称へ差し替える。正式名称を指している目標はそのまま素通りする。
+const UNIVERSITY_RENAMES = {
+  東工大: "東京科学大学(理)",
+  東京工業大学: "東京科学大学(理)",
+  阪大: "大阪大学",
+  京大: "京都大学",
+  東大: "東京大学",
+  早稲田: "早稲田大学",
+  東北: "東北大学",
+  慶應: "慶應義塾大学",
+  慶応: "慶應義塾大学",
+  理科大理: "東京理科大学(理)",
+  理科大工: "東京理科大学(工)",
+  上智: "上智大学",
+  名古屋: "名古屋大学",
+  横国: "横浜国立大学",
+  千葉: "千葉大学",
+  立教: "立教大学",
+  神戸: "神戸大学",
+  お茶女: "お茶の水女子大学",
+  埼玉: "埼玉大学",
+  横市: "横浜市立大学",
+  筑波: "筑波大学",
+  青学: "青山学院大学",
+  中央: "中央大学",
+  北海道: "北海道大学",
+  九州: "九州大学",
+  農工: "東京農工大学",
+  金沢: "金沢大学",
+  広島: "広島大学",
+  明治: "明治大学",
+  学習院: "学習院大学",
+  海洋大: "東京海洋大学",
+  信州: "信州大学",
+  都立: "東京都立大学",
+  電通: "電気通信大学",
+  法政: "法政大学",
+  芝浦工業: "芝浦工業大学",
+  東京都市: "東京都市大学",
+  東京電機: "東京電機大学",
+  工学院: "工学院大学",
+  日大: "日本大学",
+  東洋: "東洋大学",
+};
+
+export function migrateRenamedUniversities() {
+  const goals = loadGoals();
+  let changed = false;
+  const migrated = goals.map((g) => {
+    if (g.type !== "rank") return g;
+    const newName = UNIVERSITY_RENAMES[g.target?.rankLabel];
+    if (!newName) return g;
+    changed = true;
+    return { ...g, label: `志望: ${newName}`, target: { rankLabel: newName } };
+  });
+  if (changed) saveGoals(migrated);
+}
+
 export function migrateLegacyRankGoals(ranksConfig) {
   const allUniversities = new Set(ranksConfig.flatMap((r) => r.universities));
   const goals = loadGoals();
